@@ -2,6 +2,7 @@
 
 Aplikacja ma umożliwiać użytkownikom współpracę w zakresie zarządzania projektami infrastruktury informatycznej oraz wymiany informacji, łącząc funkcjonalności forum dyskusyjnego i systemu zarządzania projektami. Użytkownicy mogą tworzyć wątki na forum oraz dołączać do zespołów skierowanych na rozwój oprogramowania, śledząc zadania, przypisując je do osób i monitorując postęp ich realizacji zgodnie z zawartymi w systemie szablonami.
 
+
 2. Opis funkcji
 
 Główne moduły aplikacji:
@@ -10,10 +11,12 @@ Forum dyskusyjne                     - przestrzeń do wymiany spostrzeżeń zar�
 Zarządzanie projektami               - system służący zarządzaniu pracą zespołu projektowego i stuktury grup
 System śledzenia zadań               - funkcjonalności związane z przydziałem zadań oraz szablony przebiegu ich realizacji
 
+
 3. Wymagania funkcjonalne
+   
 3.1. Moduł Forum
 
-    Tworzenie wątków – Użytkownicy mogą inicjować wątki dyskusyjne na tematy związane z projektami lub innymi kwestiami.
+   Tworzenie wątków – Użytkownicy mogą inicjować wątki dyskusyjne na tematy związane z projektami lub innymi kwestiami.
     Struktura wątków – Obsługa kategorii forum powszechnego i hierarchii wątków projektowych oraz zadaniowych.
     Wyszukiwarka – Narzędzie wyszukiwania, umożliwiające filtrowanie wyników według daty, autora, kategorii lub projektu/zadania.
 
@@ -32,10 +35,12 @@ System śledzenia zadań               - funkcjonalności związane z przydział
     Status zadania – Wsparcie dla zmiany statusu zadania (np. „Nowe”, „W toku”, „Do zatwierdzenia”, „Zakończone”) w zgodzie z workflow projektu.
     Backlog – Możliwość uzupełniania projektu o funkcje, których wdrożenie może zostać rozpatrzone w trakcie prac.
 
+
 4. Wymagania niefunkcjonalne
+
 4.1. Interfejs użytkownika (UI/UX)
 
-    Intuicyjność i czytelność – Aplikacja powinna posiadać prosty i intuicyjny interfejs z przejrzystą nawigacją.
+   Intuicyjność i czytelność – Aplikacja powinna posiadać prosty i intuicyjny interfejs z przejrzystą nawigacją.
     Dostosowanie platformowe – Uwzględnienie korzystania z aplikacji na różnych urządzeniach/przeglądarkach w metodzie implementacji.
     Oprawa graficzna – Zachęcający, estetyczny projekt interfejsu *z opcjami ograniczonego personalizowania (motyw jasny/ciemny).
 
@@ -57,13 +62,14 @@ System śledzenia zadań               - funkcjonalności związane z przydział
     Testy: Junit, Mockito
     Wdrożenie: AWS
 
+
 6. Przypadki użycia (Use Cases)
 
-    UC1: Tworzenie nowego projektu przez menedżera projektu.
-    UC2: Dodanie zadania i przypisanie go do konkretnego użytkownika.
-    UC3: Dodanie wpisu w wątku wewnątrz konkretnego projektu.
-    UC4: Sprawdzenie statusu zadania oraz jego zmiana.
-    UC5: Dołączenie ochotnika do zespołu projektowego.
-    UC6: Wyszukiwanie wątku lub zadania na podstawie kategorii.
+    1.  Tworzenie nowego projektu przez menedżera projektu.
+    2.  Dodanie zadania i przypisanie go do konkretnego użytkownika.
+    3.  Dodanie wpisu w wątku wewnątrz konkretnego projektu.
+    4.  Sprawdzenie statusu zadania oraz jego zmiana.
+    5.  Dołączenie ochotnika do zespołu projektowego.
+    6.  Wyszukiwanie wątku lub zadania na podstawie kategorii.
 
 Funkcje opcjonale oznaczono gwiazdką: *
