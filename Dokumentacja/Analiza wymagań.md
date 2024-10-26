@@ -54,7 +54,7 @@ System śledzenia zadań               - funkcjonalności związane z przydział
    Logowanie działań - rejestrowanie sposobu i czasu wykonania kluczowych operacji.
     
 
-5. Wymagania techniczne
+5. Rozwiázania techniczne
 
     Technologia frontend: React.
     Backend: Java/Spring Boot.
@@ -72,4 +72,6 @@ System śledzenia zadań               - funkcjonalności związane z przydział
     5.  Dołączenie ochotnika do zespołu projektowego.
     6.  Wyszukiwanie wątku lub zadania na podstawie kategorii.
 
-Funkcje opcjonale oznaczono gwiazdką: *
+      Opisy przypadków użycia zostaną uwzględnione w dalszych działach dokumentacji projektowej
+
+Funkcje opcjonalne oznaczono gwiazdką: *
