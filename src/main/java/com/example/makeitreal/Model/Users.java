@@ -21,6 +21,7 @@ public class Users {
     private Long id;
 
     private String name;
+    private String surname;
 
     @ManyToMany(mappedBy = "users")
     private List<Group> groups;
