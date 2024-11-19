@@ -21,8 +21,9 @@ public class Users {
     private Long id;
 
     private String name;
-    private String surname;
-
+    private String username;
+    private String password;
+    private String email;
     @ManyToMany(mappedBy = "users")
     private List<Group> groups;
 }

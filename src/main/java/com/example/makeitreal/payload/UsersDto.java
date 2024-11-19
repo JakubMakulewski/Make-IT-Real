@@ -16,5 +16,8 @@ public class UsersDto {
     @NotEmpty(message = "Imie nie powinno byc puste")
     @Size(min = 3, max = 15)
     private String name;
+    private String username;
+    private String password;
+    private String email;
     private List<GroupDto> groups;
 }
