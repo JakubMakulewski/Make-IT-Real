@@ -1,5 +1,6 @@
 package com.example.makeitreal.payload;
 
+import com.example.makeitreal.Model.User;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -7,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * DTO for {@link com.example.makeitreal.Model.Users}
+ * DTO for {@link User}
  */
 @Data
 public class UsersDto {

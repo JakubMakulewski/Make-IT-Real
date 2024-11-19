@@ -28,5 +28,5 @@ public class Group {
             joinColumns = @JoinColumn(name = "group_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<Users> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 }

@@ -11,6 +11,8 @@ import java.util.List;
 @RequestMapping("/group")
 public class GroupController {
 
+    private
+
     @GetMapping
     public List<GroupDto> getGroups() {
         return null; // ResponseEntity service grupy
