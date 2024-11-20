@@ -19,7 +19,7 @@ public class Group {
     private Long id;
 
     private String name;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
     @ManyToMany
