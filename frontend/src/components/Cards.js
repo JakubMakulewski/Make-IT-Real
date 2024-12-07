@@ -33,7 +33,9 @@ function Cards() {
                             src="images/img-3.jpg" 
                             text="Set Sail in the Atlantic Ocean visiting Uncharted Waters" 
 
-                            description="Description project 1 Description project 1 Description project 1 Description project 1"
+                            description="Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1"
+                            count_member={11}
+                            status="in progress"
 
                             label="Mystery"
                             path="/services"

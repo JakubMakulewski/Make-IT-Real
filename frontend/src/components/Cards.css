@@ -7,6 +7,7 @@
 h1 {
   text-align: center;
     /*margin: 1em 0 1em 0;*/
+    padding-bottom: 1rem;
 }
 
 .cards__container {
@@ -170,6 +171,7 @@ h1 {
     justify-content: end;
     /*margin: 2em 0 1em 0;*/
     margin: 0 auto;
+    /*margin: 0 1em;*/
 
 
 }
@@ -178,10 +180,14 @@ h1 {
     padding: 8px 20px;
     font-size: 1.2rem;
     background-color: transparent;
-    margin: 0 1em;
+    /*margin: 0 1em;*/
     border: 3px solid #1b1919;
     border-radius: 2px;
     cursor: pointer;
+
+    width: 7.5em;
+    /*height: 2em;*/
+    text-align: center;
 }
 
 .black_button:hover {
@@ -242,6 +248,50 @@ h1 {
     display: flex;
     justify-content: space-between;
     /*padding: 20px 30px 30px;*/
-    padding-top: 20px;
+    /*padding-top: 2rem;*/
     /*vertical-align: bottom;*/
+    align-items: center;
+}
+
+.member_count {
+    font-size: 1.5em;
+}
+.member_count i {
+    padding: 0 0.5rem;
+
+}
+
+.join_project_btn {
+    /*margin: 1em;*/
+    padding: 5px 8px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    /*margin: 0 1em;*/
+    border: 3px solid #1b1919;
+    border-radius: 2px;
+    cursor: pointer;
+
+    width: 25%;
+    /*height: 2em;*/
+    text-align: center;
+}
+.join_project_btn:hover {
+    background: #1b1919;
+    color: #fff;
+    transition: all 0.3s ease-out;
+}
+
+.cards__item__status {
+    margin: 1em 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.status_icon {
+    background-color: forestgreen;
+    border-radius: 15px;
+    padding: 0.25em 0.75em;
+    color: #fff;
+    font-size: small;
 }
