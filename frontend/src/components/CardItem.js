@@ -15,13 +15,13 @@ function CardItem(props) {
 
                     <div className="project_card" data-category={props.label}>
                         <h2 className="cards__item__text__title">{props.text}</h2>
-                        {/*<figure className="cards__item__pic-wrap" data-category={props.label}>*/}
-                        {/*    <img*/}
-                        {/*        src={props.src}*/}
-                        {/*        alt="Travel Image"*/}
-                        {/*        className="cards__item__img"*/}
-                        {/*    />*/}
-                        {/*</figure>*/}
+                        <figure className="cards__item__pic-wrap" data-category={props.label}>
+                            <img
+                                src={props.src}
+                                alt="Travel Image"
+                                className="cards__item__img"
+                            />
+                        </figure>
                         <p className="cards__item__text__description">{props.description?.length > 250 ? `${props.description.substring(0, 250)}...` : props.description}</p>
                     </div>
                     {/*<div className="cards__item__info">*/}

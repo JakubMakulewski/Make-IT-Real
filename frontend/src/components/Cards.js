@@ -37,13 +37,13 @@ function Cards() {
                             count_member="10/20"
                             status="in progress"
 
-                            label="Mystery"
+                            label="Website"
                             path="/services"
                         />
                         <CardItem 
                             src="images/img-4.jpg" 
                             text="Experience Football on Top of the Himilayan Mountains" 
-                            label="Adventure" 
+                            label="Mobile App"
                             path="/products"
                         />
                         <CardItem 

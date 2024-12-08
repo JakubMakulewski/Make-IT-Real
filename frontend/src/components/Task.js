@@ -1,5 +1,5 @@
 import Tasks from "./Tasks";
-import {useState} from "react";
+import React, {useState} from "react";
 import './Tasks.css';
 import './Cards.css';
 
@@ -31,6 +31,11 @@ const Task = () => {
                     {/* Chat Icon */}
                     <div className="chat-icon">
                         <i className="fas fa-solid fa-comment"></i>
+                    </div>
+
+                    {/* Attachment Icon */}
+                    <div className="chat-icon">
+                        <i className="fas fa-solid fa-paperclip"></i>
                     </div>
 
                     {/* Number of Participants */}

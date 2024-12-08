@@ -63,8 +63,9 @@ h1 {
 .cards__item__pic-wrap {
   position: relative;
   width: 100%;
-  padding-top: 67%;
+  padding-top: 30%;
   overflow: hidden;
+    margin: 1em 0;
 }
 
 .fade-img {
@@ -101,9 +102,9 @@ h1 {
   transition: all 0.2s linear;
 }
 
-.cards__item__img:hover {
-  transform: scale(1.1);
-}
+/*.cards__item__img:hover {*/
+/*  transform: scale(1.1);*/
+/*}*/
 
 .cards__item__info {
   padding: 20px 30px 30px;
@@ -235,7 +236,7 @@ h1 {
     color: #252e48;
     font-size: 1.3rem;
     line-height: 2rem;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
 }
 .cards__item__text__description {
     color: #252e48;
