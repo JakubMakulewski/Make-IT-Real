@@ -12,9 +12,19 @@
 .tasks_list {
     margin: 1rem;
     padding: 1rem;
-    border: 1px solid #1b1919;
-    border-radius: 20px;
+    /*border: 1px solid #1b1919;*/
+    /*border-radius: 20px;*/
 
+
+    /*max-width: 1300px;*/
+    /*margin: 5rem auto;*/
+    box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);
+    /*filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.55));*/
+    border-radius: 20px;
+    /*padding: 20px 30px 30px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
 }
 
 
@@ -23,8 +33,9 @@
 .task-card {
     margin: 2rem 0;
     padding: 1rem;
-    border: 1px solid #1b1919;
+    /*border: 1px solid #1b1919;*/
     border-radius: 20px;
+    box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);
 }
 
 .task-info {
@@ -40,10 +51,10 @@
     display: flex;
 }
 .icon-group-left i {
-    margin-right: 0.5em;
-}
-.icon-group-left span {
     margin-right: 1em;
+}
+.icon-group-left .icon-with-text i {
+    margin-right: 0.5em;
 }
 
 @media only screen and (max-width: 768px) {

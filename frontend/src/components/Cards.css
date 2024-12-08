@@ -320,8 +320,8 @@ h1 {
 .card__item__more {
     max-width: 1300px;
     margin: 5rem auto;
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);
-    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.55));
+    box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);
+    /*filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.55));*/
     border-radius: 10px;
     padding: 20px 30px 30px;
     display: flex;

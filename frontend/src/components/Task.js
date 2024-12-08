@@ -38,11 +38,11 @@ const Task = () => {
                         <i className="fas fa-solid fa-paperclip"></i>
                     </div>
 
-                    {/* Number of Participants */}
-                    <div className="icon-with-text">
-                        <i className="fas fa-users"></i>
-                        <span>{task.participants}</span>
-                    </div>
+                    {/*/!* Number of Participants *!/*/}
+                    {/*<div className="icon-with-text">*/}
+                    {/*    <i className="fas fa-users"></i>*/}
+                    {/*    <span>{task.participants}</span>*/}
+                    {/*</div>*/}
 
                     {/* Task Deadline */}
                     <div className="icon-with-text">
