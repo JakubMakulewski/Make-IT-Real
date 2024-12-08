@@ -263,9 +263,7 @@ h1 {
 
 .join_project_btn {
     /*margin: 1em;*/
-    position: absolute;
 
-    right: 30px;
 
 
     padding: 5px 8px;
@@ -279,11 +277,18 @@ h1 {
     width: 25%;
     /*height: 2em;*/
     text-align: center;
+    text-decoration: none;
+    color: #1b1919;
 }
 .join_project_btn:hover {
     background: #1b1919;
     color: #fff;
     transition: all 0.3s ease-out;
+}
+
+.cards__item__buttons__parent .cards__item__buttons .join_project_btn {
+    position: absolute;
+    right: 30px;
 }
 
 .cards__item__status {
@@ -299,4 +304,53 @@ h1 {
     padding: 0.25em 0.75em;
     color: #fff;
     font-size: small;
+    margin: 0.5em;
+}
+
+
+
+
+
+
+.card__item__more__wrapper {
+    margin: 0 2rem;
+}
+
+.card__item__more {
+    max-width: 1300px;
+    margin: 5rem auto;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);
+    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.55));
+    border-radius: 10px;
+    padding: 20px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*.card__item__more__content {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin: 1.5em 0;*/
+/*}*/
+
+.member_progress_bar {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    justify-content: center;
+    width: 100%;
+}
+
+.member_progress_bar i {
+    font-size: 1.2em;
+    margin-right: 0.5rem;
+}
+.member_progress_bar span {
+    font-size: 1.2em;
+}
+
+.member_progress_bar progress {
+    width: 80%;
+    margin-right: 10px;
 }
