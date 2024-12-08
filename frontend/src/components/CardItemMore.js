@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Tasks from "./Tasks";
 
 const CardItemMore = () => {
     const [project] = useState({
@@ -15,7 +16,7 @@ const CardItemMore = () => {
             <div className="card__item__more">
                 <h2>{project.title}</h2>
                 <div className="cards__item__status">
-                    <div className="status_icon ">{project.status}</div>
+                    <div className="status_icon">{project.status}</div>
                 </div>
                 <p className="cards__item__text__description">{project.description}</p>
                 <div className="member_progress_bar">
@@ -28,6 +29,9 @@ const CardItemMore = () => {
                 {/*) : (*/}
                 {/*    <button>Dołącz</button>*/}
                 {/*)}*/}
+
+                <Tasks/>
+
                 <button className="join_project_btn">
                     {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
                 </button>

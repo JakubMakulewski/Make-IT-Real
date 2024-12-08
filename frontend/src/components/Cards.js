@@ -34,7 +34,7 @@ function Cards() {
                             text="Set Sail in the Atlantic Ocean visiting Uncharted Waters" 
 
                             description="Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1"
-                            count_member={11}
+                            count_member="10/20"
                             status="in progress"
 
                             label="Mystery"
