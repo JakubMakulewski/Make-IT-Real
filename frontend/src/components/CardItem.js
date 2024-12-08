@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-
+import { Button } from './Button';
 
 function CardItem(props) {
     const [isActive, setIsActive] = useState(false);
@@ -32,12 +32,13 @@ function CardItem(props) {
                             {/*<h5 className="cards__item__text">{props.text}</h5>*/}
 
                             <div className="member_count">
-                                <i className="fas fa-users text-blue-500"></i>
+                                <i className="fas fa-users"></i>
                                 <span className="">{props.count_member}</span>
                             </div>
                             <button
                                 className="join_project_btn"
                                 onClick={() => setIsActive(!isActive)}
+                                href="/card-item-more"
                             >
                                 {isActive ? <i className="fas fa-lock"></i> : "Join"}
                             </button>

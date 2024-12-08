@@ -44,9 +44,9 @@ h1 {
   display: flex;
   flex-flow: column;
   width: 100%;
-  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
-  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.35);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.35));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.35));
   border-radius: 10px;
   overflow: hidden;
   text-decoration: none;
@@ -56,7 +56,7 @@ h1 {
 }
 
 .cards__item__link:hover {
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.35);
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);
     transition: all 0.3s ease-out;
 }
 
@@ -172,7 +172,7 @@ h1 {
     /*margin: 2em 0 1em 0;*/
     margin: 0 auto;
     /*margin: 0 1em;*/
-
+    max-width: 1600px;
 
 }
 .black_button {
@@ -233,8 +233,8 @@ h1 {
 
 .cards__item__text__title {
     color: #252e48;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
+    font-size: 1.3rem;
+    line-height: 2rem;
     padding-bottom: 20px;
 }
 .cards__item__text__description {
@@ -263,6 +263,11 @@ h1 {
 
 .join_project_btn {
     /*margin: 1em;*/
+    position: absolute;
+
+    right: 30px;
+
+
     padding: 5px 8px;
     font-size: 1.2rem;
     background-color: transparent;
