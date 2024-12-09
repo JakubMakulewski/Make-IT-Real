@@ -7,8 +7,10 @@ import com.example.makeitreal.Service.UserService;
 import com.example.makeitreal.payload.GroupDto;
 import com.example.makeitreal.payload.UsersDto;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private ModelMapper modelMapper;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
@@ -24,8 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UsersDto> getAllUsers() {
-        List<User> users = userRepository.getAllUsers();
-        return users.stream().map(this::mapToDto).collect(Collectors.toList());
+        //List<User> users = userRepository.getAllUsers();
+        //return users.stream().map(this::mapToDto).collect(Collectors.toList());
+        return new ArrayList<>();
     }
 
     private User mapToEntity(UsersDto usersDto) {

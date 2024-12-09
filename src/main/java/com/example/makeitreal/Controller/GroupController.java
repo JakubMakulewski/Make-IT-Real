@@ -3,6 +3,7 @@ package com.example.makeitreal.Controller;
 import com.example.makeitreal.Service.GroupService;
 import com.example.makeitreal.payload.GroupDto;
 import com.example.makeitreal.utils.AppCostants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ public class GroupController {
 
     private GroupService groupService;
 
+    @Autowired
     public GroupController(GroupService groupService) {
         this.groupService = groupService;
     }

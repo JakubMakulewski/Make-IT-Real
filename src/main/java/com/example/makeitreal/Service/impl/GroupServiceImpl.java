@@ -9,6 +9,7 @@ import com.example.makeitreal.Repository.ProjectRepository;
 import com.example.makeitreal.Service.GroupService;
 import com.example.makeitreal.payload.GroupDto;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -23,6 +24,7 @@ public class GroupServiceImpl implements GroupService {
     private ModelMapper modelMapper;
     private ProjectRepository projectRepository;
 
+    @Autowired
     public GroupServiceImpl(GroupRepository groupRepository, ModelMapper modelMapper, ProjectRepository projectRepository) {
         this.groupRepository = groupRepository;
         this.modelMapper = modelMapper;
