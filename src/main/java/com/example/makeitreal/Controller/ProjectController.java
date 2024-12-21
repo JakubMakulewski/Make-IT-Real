@@ -16,7 +16,7 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ProjectDto createProject(@RequestBody CreateProjectDTO createProjectDTO) {
         return projectService.createProject(createProjectDTO);
     }
