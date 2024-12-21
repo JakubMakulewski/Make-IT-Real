@@ -1,9 +1,8 @@
-package com.example.makeitreal.payload;
+package com.example.makeitreal.payload.project;
 
+import com.example.makeitreal.payload.GroupDto;
 import lombok.Data;
-import lombok.Value;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
