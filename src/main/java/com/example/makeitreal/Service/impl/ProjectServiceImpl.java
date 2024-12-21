@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = new Project();
         project.setName(createProjectDTO.getName());
         project.setDescription(createProjectDTO.getDescription());
-        project.setCategory(projectCategory);
+//        project.setCategory(projectCategory);
 
         projectRepository.save(project);
         return mapToDto(project);
