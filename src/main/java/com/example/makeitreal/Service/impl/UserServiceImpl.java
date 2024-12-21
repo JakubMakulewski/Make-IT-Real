@@ -1,5 +1,6 @@
 package com.example.makeitreal.Service.impl;
 
+import com.example.makeitreal.Exceptions.ResourceNotFoundException;
 import com.example.makeitreal.Model.Group;
 import com.example.makeitreal.Model.User;
 import com.example.makeitreal.Repository.UserRepository;
@@ -7,6 +8,7 @@ import com.example.makeitreal.Service.UserService;
 import com.example.makeitreal.payload.GroupDto;
 import com.example.makeitreal.payload.UsersDto;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +28,12 @@ public class UserServiceImpl implements UserService {
     public List<UsersDto> getAllUsers() {
         List<User> users = userRepository.getAllUsers();
         return users.stream().map(this::mapToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public UsersDto findById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("User", "id", id));
+        return mapToDto(user);
     }
 
     private User mapToEntity(UsersDto usersDto) {
