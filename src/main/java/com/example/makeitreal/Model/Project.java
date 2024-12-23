@@ -33,8 +33,8 @@ public class Project {
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> projects = new ArrayList<>();
-    private List<Thread> threads;
-    private List<Task> tasks;
+//    private List<Thread> threads;
+//    private List<Task> tasks;
 
 
 }
