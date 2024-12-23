@@ -41,7 +41,6 @@ public class GroupServiceImpl implements GroupService {
         Group group = groupRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Group", "id", id));
 
-        // Ręczne mapowanie Group -> GroupDto
         GroupDto groupDto = new GroupDto();
         groupDto.setId(group.getId());
         groupDto.setName(group.getName());
@@ -77,20 +76,16 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public GroupDto createGroup(GroupDto groupDto) {
-        // Pobierz użytkowników na podstawie ich ID
         List<User> users = userRepository.findAllById(groupDto.getUsers());
 
-        // Utwórz nową grupę
         Group group = new Group();
         group.setName(groupDto.getName());
         group.setProject(projectRepository.findById(groupDto.getProjectId())
                 .orElseThrow(() -> new RuntimeException("Projekt nie istnieje")));
         group.setUsers(users);
 
-        // Zapisz grupę w bazie
         Group savedGroup = groupRepository.save(group);
 
-        // Mapowanie Group -> GroupDto
         GroupDto resultDto = new GroupDto();
         resultDto.setId(savedGroup.getId());
         resultDto.setName(savedGroup.getName());
