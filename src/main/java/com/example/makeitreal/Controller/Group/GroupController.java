@@ -1,4 +1,4 @@
-package com.example.makeitreal.Controller;
+package com.example.makeitreal.Controller.Group;
 
 import com.example.makeitreal.Service.GroupService;
 import com.example.makeitreal.payload.GroupDto;
@@ -43,4 +43,16 @@ public class GroupController {
             @PathVariable(name = "projectId") Long projectId) {
         return groupService.getGroupsByProjectId(projectId);
     }
+
+    @PostMapping("/groups")
+    public ResponseEntity<GroupDto> createGroup(@RequestBody GroupDto groupDto) {
+        return new ResponseEntity<>(groupService.createGroup(groupDto), HttpStatus.CREATED);
+    }
+
+//    @PostMapping("/groups/{groupId}/users/{userId}")
+//    public ResponseEntity<Void> addUserToGroup(
+//            @PathVariable(name = "groupId") Long groupId,
+//            @PathVariable(name = "userId") Long userId) {
+//        return new ResponseEntity<>(groupService.addUserToGroup(groupId, userId), HttpStatus.OK);
+//    }
 }

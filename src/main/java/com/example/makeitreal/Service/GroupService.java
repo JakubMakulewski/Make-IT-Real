@@ -12,4 +12,5 @@ public interface GroupService {
     List<GroupDto> getAllGroups();
     List<GroupDto> getGroupsByProjectId(Long projectId);
 
+    GroupDto createGroup(GroupDto groupDto);
 }

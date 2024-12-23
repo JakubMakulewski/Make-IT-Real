@@ -1,6 +1,6 @@
 package com.example.makeitreal;
 
-import com.example.makeitreal.Controller.ProjectController;
+import com.example.makeitreal.Controller.Project.ProjectController;
 import com.example.makeitreal.Service.ProjectService;
 import com.example.makeitreal.payload.GroupDto;
 import com.example.makeitreal.payload.project.CreateProjectDTO;

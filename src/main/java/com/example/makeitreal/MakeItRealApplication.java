@@ -17,4 +17,21 @@ public class MakeItRealApplication {
         SpringApplication.run(MakeItRealApplication.class, args);
     }
 
+
+
+//    #http://localhost:5051/api/auth/register
+//            #przykladowe dane do rejestracji
+//#{
+//#"name" : "boby",
+//#"username": "boby123",
+//#"email": "boby@gmail.com",
+//#"password":"boby"
+//#}
+//#http://localhost:5051/api/auth/login
+//            #przykladowe dane do logowania
+//
+//#{
+//#"usernameOrEmail" : "boby123",
+//#"password":"boby"
+//#}
 }

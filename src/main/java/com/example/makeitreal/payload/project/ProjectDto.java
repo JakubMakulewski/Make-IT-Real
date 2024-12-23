@@ -3,6 +3,7 @@ package com.example.makeitreal.payload.project;
 import com.example.makeitreal.payload.GroupDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProjectDto  {
     Long id;
     String name;

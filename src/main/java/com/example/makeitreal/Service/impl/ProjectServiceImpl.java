@@ -11,6 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
@@ -28,20 +32,26 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDto createProject(CreateProjectDTO createProjectDTO) {
         ProjectCategory projectCategory =
                 projectCategoryRepository.findOneByName(createProjectDTO.getCategory())
-                .orElseGet(() -> {
-                    ProjectCategory newProjectCategory = new ProjectCategory();
-                    newProjectCategory.setName(createProjectDTO.getCategory());
-                    projectCategoryRepository.save(newProjectCategory);
-                    return newProjectCategory;
-                });
+                        .orElseGet(() -> {
+                            ProjectCategory newProjectCategory = new ProjectCategory();
+                            newProjectCategory.setName(createProjectDTO.getCategory());
+                            projectCategoryRepository.save(newProjectCategory);
+                            return newProjectCategory;
+                        });
 
-        Project project = new Project();
-        project.setName(createProjectDTO.getName());
-        project.setDescription(createProjectDTO.getDescription());
-//        project.setCategory(projectCategory);
+//        Project project = new Project();
+//        project.setName(createProjectDTO.getName());
+//        project.setDescription(createProjectDTO.getDescription());
+        Project project = modelMapper.map(createProjectDTO, Project.class);
+        project.setCategory(projectCategory);
 
         projectRepository.save(project);
         return mapToDto(project);
+    }
+
+    @Override
+    public List<ProjectDto> getAllProjects() {
+        return projectRepository.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
     private ProjectDto mapToDto(Project project) {
