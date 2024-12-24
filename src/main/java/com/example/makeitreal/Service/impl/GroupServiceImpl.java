@@ -2,7 +2,6 @@ package com.example.makeitreal.Service.impl;
 
 import com.example.makeitreal.Exceptions.ResourceNotFoundException;
 import com.example.makeitreal.Model.Group;
-import com.example.makeitreal.Model.Project;
 import com.example.makeitreal.Model.User;
 import com.example.makeitreal.Repository.GroupRepository;
 import com.example.makeitreal.Repository.ProjectRepository;
@@ -13,9 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,35 +33,26 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public GroupDto getGroupById(Long id) {
-//        Group group = groupRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Group", "id", id));
-//        return mapToDto(group);
-        Group group = groupRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Group", "id", id));
-
-        GroupDto groupDto = new GroupDto();
-        groupDto.setId(group.getId());
-        groupDto.setName(group.getName());
-        groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
-        groupDto.setProjectId(group.getProject().getId());
-
-        return groupDto;
+        Group group = groupRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Group", "id", id));
+        return mapToDto(group);
+//        Group group = groupRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Group", "id", id));
+//
+//        GroupDto groupDto = new GroupDto();
+//        groupDto.setId(group.getId());
+//        groupDto.setName(group.getName());
+//        groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
+//        groupDto.setProjectId(group.getProject().getId());
+//
+//        return groupDto;
     }
 
     @Override
     public List<GroupDto> getAllGroups() {
         List<Group> groups = groupRepository.findAll();
-//        return groups.stream().map(group -> modelMapper.map(group, GroupDto.class))
-//                .collect(Collectors.toList());
-        return groups.stream()
-                .map(group -> {
-                    GroupDto groupDto = new GroupDto();
-                    groupDto.setId(group.getId());
-                    groupDto.setName(group.getName());
-                    groupDto.setProjectId(group.getProject().getId());
-                    groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
-                    return groupDto;
-                })
+        return groups.stream().map(this::mapToDto)
                 .collect(Collectors.toList());
+
     }
 
     @Override
@@ -86,13 +74,7 @@ public class GroupServiceImpl implements GroupService {
 
         Group savedGroup = groupRepository.save(group);
 
-        GroupDto resultDto = new GroupDto();
-        resultDto.setId(savedGroup.getId());
-        resultDto.setName(savedGroup.getName());
-        resultDto.setUsers(users.stream().map(User::getId).toList());
-        resultDto.setProjectId(savedGroup.getProject().getId());
-
-        return resultDto;
+        return mapToDto(savedGroup);
     }
 
     @Override
@@ -106,7 +88,7 @@ public class GroupServiceImpl implements GroupService {
 
         Group updatedGroup = groupRepository.save(group);
 
-        return mapToDtoUpdate(updatedGroup);
+        return mapToDto(updatedGroup);
     }
 
     @Override
@@ -120,15 +102,16 @@ public class GroupServiceImpl implements GroupService {
         return modelMapper.map(groupDto, Group.class);
     }
 
+//    private GroupDto mapToDto(Group group) {
+//        return modelMapper.map(group, GroupDto.class);
+//    }
     private GroupDto mapToDto(Group group) {
-        return modelMapper.map(group, GroupDto.class);
-    }
-    private GroupDto mapToDtoUpdate(Group group) {
         GroupDto groupDto = new GroupDto();
         groupDto.setId(group.getId());
         groupDto.setName(group.getName());
         groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
         groupDto.setProjectId(group.getProject().getId());
         return groupDto;
+
     }
 }
