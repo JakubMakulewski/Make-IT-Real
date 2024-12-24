@@ -15,4 +15,6 @@ public interface GroupService {
     GroupDto createGroup(GroupDto groupDto);
 
     GroupDto updateGroup(Long groupId, GroupDto groupDto);
+
+    void deleteGroup(Long groupId);
 }

@@ -109,6 +109,12 @@ public class GroupServiceImpl implements GroupService {
         return mapToDtoUpdate(updatedGroup);
     }
 
+    @Override
+    public void deleteGroup(Long groupId) {
+        Group group = groupRepository.findById(groupId).orElseThrow(()-> new ResourceNotFoundException("Group", "id", groupId));
+        groupRepository.delete(group);
+    }
+
 
     private Group mapToEntity(GroupDto groupDto) {
         return modelMapper.map(groupDto, Group.class);

@@ -55,7 +55,11 @@ public class GroupController {
     }
 
 
-
+    @DeleteMapping("/groups/{groupId}")
+    public ResponseEntity<Void> deleteGroup(@PathVariable(name = "groupId") Long groupId) {
+        groupService.deleteGroup(groupId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 //    @PostMapping("/groups/{groupId}/users/{userId}")
 //    public ResponseEntity<Void> addUserToGroup(
