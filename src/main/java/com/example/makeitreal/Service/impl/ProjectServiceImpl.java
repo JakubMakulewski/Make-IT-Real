@@ -1,10 +1,13 @@
 package com.example.makeitreal.Service.impl;
 
+import com.example.makeitreal.Model.Group;
 import com.example.makeitreal.Model.Project;
 import com.example.makeitreal.Model.ProjectCategory;
+import com.example.makeitreal.Model.User;
 import com.example.makeitreal.Repository.ProjectCategoryRepository;
 import com.example.makeitreal.Repository.ProjectRepository;
 import com.example.makeitreal.Service.ProjectService;
+import com.example.makeitreal.payload.GroupDto;
 import com.example.makeitreal.payload.project.CreateProjectDTO;
 import com.example.makeitreal.payload.project.ProjectDto;
 import org.modelmapper.ModelMapper;
@@ -54,7 +57,26 @@ public class ProjectServiceImpl implements ProjectService {
         return projectRepository.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
+    //    private ProjectDto mapToDto(Project project) {
+//        return modelMapper.map(project, ProjectDto.class);
+//    }
     private ProjectDto mapToDto(Project project) {
-        return modelMapper.map(project, ProjectDto.class);
+        ProjectDto projectDto = new ProjectDto();
+        projectDto.setId(project.getId());
+        projectDto.setName(project.getName());
+        projectDto.setDescription(project.getDescription());
+        projectDto.setGroups(project.getGroups().stream()
+                .map(this::mapGroupToDto) // Zamieniamy List<Group> na List<GroupDto>
+                .collect(Collectors.toList()));
+        return projectDto;
+
+    }
+    private GroupDto mapGroupToDto(Group group) {
+        GroupDto groupDto = new GroupDto();
+        groupDto.setId(group.getId());
+        groupDto.setName(group.getName());
+        groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
+        groupDto.setProjectId(group.getProject().getId());
+        return groupDto;
     }
 }

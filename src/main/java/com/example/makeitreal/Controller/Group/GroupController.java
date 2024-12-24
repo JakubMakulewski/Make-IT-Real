@@ -14,7 +14,7 @@ import java.util.List;
 //@RequestMapping("/group")
 public class GroupController {
 
-    private GroupService groupService;
+    private final GroupService groupService;
 
     @Autowired
     public GroupController(GroupService groupService) {
@@ -48,6 +48,14 @@ public class GroupController {
     public ResponseEntity<GroupDto> createGroup(@RequestBody GroupDto groupDto) {
         return new ResponseEntity<>(groupService.createGroup(groupDto), HttpStatus.CREATED);
     }
+
+    @PutMapping("/groups/{groupId}")
+    public ResponseEntity<GroupDto> updateGroup(@PathVariable(name = "groupId") Long groupId, @RequestBody GroupDto groupDto) {
+        return new ResponseEntity<>(groupService.updateGroup(groupId, groupDto), HttpStatus.OK);
+    }
+
+
+
 
 //    @PostMapping("/groups/{groupId}/users/{userId}")
 //    public ResponseEntity<Void> addUserToGroup(

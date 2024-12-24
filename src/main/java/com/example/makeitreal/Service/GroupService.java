@@ -13,4 +13,6 @@ public interface GroupService {
     List<GroupDto> getGroupsByProjectId(Long projectId);
 
     GroupDto createGroup(GroupDto groupDto);
+
+    GroupDto updateGroup(Long groupId, GroupDto groupDto);
 }

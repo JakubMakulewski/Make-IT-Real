@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 @Service
 public class GroupServiceImpl implements GroupService {
 
-    private GroupRepository groupRepository;
-    private ModelMapper modelMapper;
-    private ProjectRepository projectRepository;
-    private UserRepository userRepository;
+    private final GroupRepository groupRepository;
+    private final ModelMapper modelMapper;
+    private final ProjectRepository projectRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public GroupServiceImpl(UserRepository userRepository,GroupRepository groupRepository, ModelMapper modelMapper, ProjectRepository projectRepository) {
@@ -95,14 +95,34 @@ public class GroupServiceImpl implements GroupService {
         return resultDto;
     }
 
+    @Override
+    public GroupDto updateGroup(Long groupId, GroupDto groupDto) {
+        Group group = groupRepository.findById(groupId).orElseThrow(()-> new ResourceNotFoundException("Group", "id", groupId));
+        List<User> users = userRepository.findAllById(groupDto.getUsers());
+        group.setName(groupDto.getName());
+        group.setUsers(users);
+        group.setProject(projectRepository.findById(groupDto.getProjectId())
+               .orElseThrow(() -> new RuntimeException("Projekt nie istnieje")));
+
+        Group updatedGroup = groupRepository.save(group);
+
+        return mapToDtoUpdate(updatedGroup);
+    }
+
 
     private Group mapToEntity(GroupDto groupDto) {
-        Group group = modelMapper.map(groupDto, Group.class);
-        return group;
+        return modelMapper.map(groupDto, Group.class);
     }
 
     private GroupDto mapToDto(Group group) {
-        GroupDto groupDto = modelMapper.map(group, GroupDto.class);
+        return modelMapper.map(group, GroupDto.class);
+    }
+    private GroupDto mapToDtoUpdate(Group group) {
+        GroupDto groupDto = new GroupDto();
+        groupDto.setId(group.getId());
+        groupDto.setName(group.getName());
+        groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
+        groupDto.setProjectId(group.getProject().getId());
         return groupDto;
     }
 }
