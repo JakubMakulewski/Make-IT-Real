@@ -3,8 +3,10 @@ package com.example.makeitreal.Service.impl;
 import com.example.makeitreal.Exceptions.ResourceNotFoundException;
 import com.example.makeitreal.Model.Project;
 import com.example.makeitreal.Model.Task;
+import com.example.makeitreal.Model.User;
 import com.example.makeitreal.Repository.ProjectRepository;
 import com.example.makeitreal.Repository.TaskRepository;
+import com.example.makeitreal.Repository.UserRepository;
 import com.example.makeitreal.Service.TaskService;
 import com.example.makeitreal.payload.TaskDto;
 import org.modelmapper.ModelMapper;
@@ -20,12 +22,14 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final ProjectRepository projectRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
     @Autowired
-    public TaskServiceImpl(TaskRepository taskRepository, ProjectRepository projectRepository, ModelMapper modelMapper) {
+    public TaskServiceImpl(TaskRepository taskRepository, ProjectRepository projectRepository, ModelMapper modelMapper,UserRepository userRepository) {
         this.taskRepository = taskRepository;
         this.projectRepository = projectRepository;
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -48,6 +52,19 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = taskRepository.findByProject(project);
         return tasks.stream().map(this::mapToDto).collect(Collectors.toList());
     }
+    @Override
+    public List<TaskDto> getTasksByUserId(Long assigneeId) {
+        // Validate that the user exists
+        User user = userRepository.findById(assigneeId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", assigneeId));
+
+        // Fetch tasks assigned to the user
+        List<Task> tasks = taskRepository.findByAssignee(assigneeId);
+
+        // Map tasks to DTOs
+        return tasks.stream().map(this::mapToDto).collect(Collectors.toList());
+    }
+
 
     @Override
     public TaskDto createTask(TaskDto taskDto) {

@@ -14,4 +14,5 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     Optional<Task> findById(Long id);
     List<Task> findAllByTaskType(String taskType);//nie wiem po co to?
     List<Task> findByProject(Project project);//raczej potrzebne do laczenia taskow z projektami.
+    List<Task> findByAssignee(Long assigneeId);
 }

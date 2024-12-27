@@ -59,4 +59,9 @@ public class TaskController {
         taskService.deleteTask(taskId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/users/{userId}/tasks")
+    public ResponseEntity<List<TaskDto>> getTasksByUserId(@PathVariable Long userId) {
+        List<TaskDto> tasks = taskService.getTasksByUserId(userId);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
 }
