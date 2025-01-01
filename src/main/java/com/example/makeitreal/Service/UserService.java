@@ -1,12 +1,10 @@
 package com.example.makeitreal.Service;
 
 import com.example.makeitreal.payload.UsersDto;
-import org.springframework.http.ResponseEntity;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface UserService {
-    List<UsersDto> getAllUsers();
+    Page<UsersDto> getAllUsers(int pageNo, int pageSize, String sortBy, String sortDir);
 
     UsersDto findById(Long id);
 }

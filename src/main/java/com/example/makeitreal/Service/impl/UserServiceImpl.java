@@ -8,13 +8,12 @@ import com.example.makeitreal.Service.UserService;
 import com.example.makeitreal.payload.GroupDto;
 import com.example.makeitreal.payload.UsersDto;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,10 +27,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UsersDto> getAllUsers() {
-        //List<User> users = userRepository.getAllUsers();
-        //return users.stream().map(this::mapToDto).collect(Collectors.toList());
-        return new ArrayList<>();
+    public Page<UsersDto> getAllUsers(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDir.equals("asc")) {
+            sort = sort.ascending();
+        } else if (sortDir.equals("desc")) {
+            sort = sort.descending();
+        }
+
+        Pageable sortedAndPaginated = PageRequest.of(pageNo, pageSize, sort);
+        Page<User> users = userRepository.findAll(sortedAndPaginated);
+        return users.map(this::mapToDto);
     }
 
     @Override
