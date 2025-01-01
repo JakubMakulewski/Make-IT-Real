@@ -46,7 +46,21 @@ public class UserServiceImpl implements UserService {
     }
 
     private UsersDto mapToDto(User user) {
-        UsersDto userDto = modelMapper.map(user, UsersDto.class);
-        return userDto;
+        UsersDto usersDto = new UsersDto();
+        usersDto.setId(user.getId());
+        usersDto.setName(user.getName());
+        usersDto.setEmail(user.getEmail());
+        usersDto.setGroups(user.getGroups().stream().map(this::mapGroupToDto).toList());
+        return usersDto;
+    }
+
+    // TEMP: should instead use GroupService
+    private GroupDto mapGroupToDto(Group group) {
+        GroupDto groupDto = new GroupDto();
+        groupDto.setId(group.getId());
+        groupDto.setName(group.getName());
+        groupDto.setUsers(group.getUsers().stream().map(User::getId).toList());
+        groupDto.setProjectId(group.getProject().getId());
+        return groupDto;
     }
 }
