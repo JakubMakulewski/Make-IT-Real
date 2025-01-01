@@ -18,4 +18,5 @@ public class ProjectDto  {
     String name;
     String description;
     List<GroupDto> groups;
+    String category;
 }

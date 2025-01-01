@@ -33,9 +33,9 @@ class ProjectControllerTest {
     @Test
     void testCreateProject() {
         // Mock data
-        List<GroupDto> list = new ArrayList<GroupDto>();
+        List<GroupDto> list = new ArrayList<>();
         CreateProjectDTO createProjectDTO = new CreateProjectDTO("New Project","Desc", "kategoria");
-        ProjectDto mockProject = new ProjectDto(1L, "New Project", "Desc", list);
+        ProjectDto mockProject = new ProjectDto(1L, "New Project", "Desc", list, "kategoria");
 
         // Mock behavior
         when(projectService.createProject(createProjectDTO)).thenReturn(mockProject);

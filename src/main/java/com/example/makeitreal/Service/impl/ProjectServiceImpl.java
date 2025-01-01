@@ -79,6 +79,7 @@ public class ProjectServiceImpl implements ProjectService {
         projectDto.setGroups(project.getGroups().stream()
                 .map(this::mapGroupToDto) // Zamieniamy List<Group> na List<GroupDto>
                 .collect(Collectors.toList()));
+        projectDto.setCategory(project.getCategory().getName());
         return projectDto;
 
     }
