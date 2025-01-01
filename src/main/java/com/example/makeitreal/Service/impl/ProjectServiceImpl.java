@@ -12,10 +12,12 @@ import com.example.makeitreal.payload.project.CreateProjectDTO;
 import com.example.makeitreal.payload.project.ProjectDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,8 +55,17 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectDto> getAllProjects() {
-        return projectRepository.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
+    public Page<ProjectDto> getAllProjects(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDir.equals("asc")) {
+            sort = sort.ascending();
+        } else if (sortDir.equals("desc")) {
+            sort = sort.descending();
+        }
+
+        Pageable sortedAndPaginated = PageRequest.of(pageNo, pageSize, sort);
+        Page<Project> projects = projectRepository.findAll(sortedAndPaginated);
+        return projects.map(this::mapToDto);
     }
 
     //    private ProjectDto mapToDto(Project project) {
