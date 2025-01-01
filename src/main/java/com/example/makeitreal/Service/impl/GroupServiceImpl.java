@@ -10,6 +10,10 @@ import com.example.makeitreal.Service.GroupService;
 import com.example.makeitreal.payload.GroupDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,11 +52,17 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<GroupDto> getAllGroups() {
-        List<Group> groups = groupRepository.findAll();
-        return groups.stream().map(this::mapToDto)
-                .collect(Collectors.toList());
+    public Page<GroupDto> getAllGroups(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDir.equals("asc")) {
+            sort = sort.ascending();
+        } else if (sortDir.equals("desc")) {
+            sort = sort.descending();
+        }
 
+        Pageable sortedAndPaginated = PageRequest.of(pageNo, pageSize, sort);
+        Page<Group> groups = groupRepository.findAll(sortedAndPaginated);
+        return groups.map(this::mapToDto);
     }
 
     @Override

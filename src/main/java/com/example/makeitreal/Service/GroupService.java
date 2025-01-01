@@ -1,15 +1,13 @@
 package com.example.makeitreal.Service;
 
-import com.example.makeitreal.Model.Group;
-import com.example.makeitreal.Model.User;
 import com.example.makeitreal.payload.GroupDto;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface GroupService {
     GroupDto getGroupById(Long id);
-    List<GroupDto> getAllGroups();
+    Page<GroupDto> getAllGroups(int pageNo, int pageSize, String sortBy, String sortDir);
     List<GroupDto> getGroupsByProjectId(Long projectId);
 
     GroupDto createGroup(GroupDto groupDto);
