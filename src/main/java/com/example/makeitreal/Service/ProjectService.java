@@ -9,4 +9,10 @@ public interface ProjectService {
     ProjectDto createProject(CreateProjectDTO createProjectDTO);
 
     Page<ProjectDto> getAllProjects(int pageNo, int pageSize, String sortBy, String sortDir);
+
+    ProjectDto getProjectById(Long id);
+
+    ProjectDto updateProject(Long id, CreateProjectDTO updatedProjectDTO);
+
+    void deleteProject(Long id);
 }

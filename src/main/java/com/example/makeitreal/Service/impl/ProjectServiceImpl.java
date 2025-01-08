@@ -91,4 +91,42 @@ public class ProjectServiceImpl implements ProjectService {
         groupDto.setProjectId(group.getProject().getId());
         return groupDto;
     }
+    @Override
+    public ProjectDto getProjectById(Long id) {
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
+        return mapToDto(project);
+    }
+
+    @Override
+    public ProjectDto updateProject(Long id, CreateProjectDTO updatedProjectDTO) {
+
+        Project existingProject = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
+
+        existingProject.setName(updatedProjectDTO.getName());
+        existingProject.setDescription(updatedProjectDTO.getDescription());
+
+        ProjectCategory projectCategory = projectCategoryRepository.findOneByName(updatedProjectDTO.getCategory())
+                .orElseGet(() -> {
+                    ProjectCategory newCategory = new ProjectCategory();
+                    newCategory.setName(updatedProjectDTO.getCategory());
+                    projectCategoryRepository.save(newCategory);
+                    return newCategory;
+                });
+        existingProject.setCategory(projectCategory);
+
+        projectRepository.save(existingProject);
+        return mapToDto(existingProject);
+    }
+
+    @Override
+    public void deleteProject(Long id) {
+
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
+
+        projectRepository.delete(project);
+    }
+
 }

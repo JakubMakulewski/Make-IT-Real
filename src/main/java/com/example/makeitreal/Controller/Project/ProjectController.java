@@ -24,6 +24,7 @@ public class ProjectController {
     public ProjectDto createProject(@RequestBody CreateProjectDTO createProjectDTO) {
         return projectService.createProject(createProjectDTO);
     }
+
     @GetMapping
     public ResponseEntity<Page<ProjectDto>> getAllProjects(
             @RequestParam(value = "pageNo", defaultValue = AppCostants.DEAFULT_PAGE_NUMBER, required = false) int pageNo,
@@ -34,5 +35,27 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.getAllProjects(pageNo, pageSize, sortBy, sortDir), HttpStatus.OK);
     }
 
+    // Search by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<ProjectDto> getProjectById(@PathVariable Long id) {
+        ProjectDto projectDto = projectService.getProjectById(id);
+        return new ResponseEntity<>(projectDto, HttpStatus.OK);
+    }
 
+    // Update Project
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjectDto> updateProject(
+            @PathVariable Long id,
+            @RequestBody CreateProjectDTO updatedProjectDTO
+    ) {
+        ProjectDto updatedProject = projectService.updateProject(id, updatedProjectDTO);
+        return new ResponseEntity<>(updatedProject, HttpStatus.OK);
+    }
+
+    // Delete Project
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProject(@PathVariable Long id) {
+        projectService.deleteProject(id);
+        return new ResponseEntity<>("Project deleted successfully", HttpStatus.OK);
+    }
 }
