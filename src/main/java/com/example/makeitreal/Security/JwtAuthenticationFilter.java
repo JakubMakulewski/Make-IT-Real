@@ -31,7 +31,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String token = getTokenFromRequest(request);
-
+        String path = request.getRequestURI();
+        if (path.startsWith("/h2-console")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
             String username = jwtTokenProvider.getUsername(token);
 
