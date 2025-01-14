@@ -1,17 +1,80 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CardItem from './CardItem';
 import './Cards.css';
 import {Button} from "./Button";
+import axios from "axios";
 
 // import './Navbar.css';
 
 function Cards() {
+
+    const [projects, setProjects] = useState([]); // Stan na listę projektów
+    const [loading, setLoading] = useState(true); // Stan ładowania
+    const [error, setError] = useState(''); // Stan błędu
+    const [pageNo, setPageNo] = useState(0); // Numer aktualnej strony
+    const [totalPages, setTotalPages] = useState(0); // Liczba stron
+
+
+    const [isPrivate, setIsPrivate] = useState(false);
+
+
+
+    useEffect(() => {
+        fetchProjects();
+    }, [pageNo]); // Pobierz projekty przy zmianie numeru strony
+
+    const fetchProjects = async () => {
+        const token = localStorage.getItem('jwtToken'); // Pobierz token JWT z localStorage
+        if (!token) {
+            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await axios.get('http://localhost:5051/projects', {
+                params: {
+                    pageNo: pageNo,
+                    pageSize: 10, // Liczba elementów na stronę
+                    sortBy: 'id', // Sortowanie po polu
+                    sortDir: 'asc', // Kierunek sortowania
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`, // Dodanie tokena JWT do nagłówka
+                },
+            });
+
+            const data = response.data;
+            setProjects(data.content); // `content` zawiera listę projektów
+            setTotalPages(data.totalPages); // Całkowita liczba stron
+            setLoading(false);
+        } catch (err) {
+            setError('Nie udało się załadować projektów.');
+            setLoading(false);
+        }
+    };
+
+    const handleNextPage = () => {
+        if (pageNo < totalPages - 1) {
+            setPageNo(pageNo + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (pageNo > 0) {
+            setPageNo(pageNo - 1);
+        }
+    };
+
     return (
         <div className="cards">
-            <h1>Check out these EPIC Destinations!</h1>
+            <h1>Project List</h1>
             <div className="above_project_list">
                 <button className="black_button">Add project</button>
             </div>
+            {loading && <p>Ładowanie...</p>}
+            {error && <p style={{color: 'red'}}>{error}</p>}
+            {!loading && !error && (
             <div className="cards__container">
                 <div className="cards__wrapper">
                     {/* <ul className="cards__items">
@@ -29,44 +92,22 @@ function Cards() {
                         />
                     </ul> */}
                     <ul className="cards__items">
-                        <CardItem 
-                            src="images/img-3.jpg" 
-                            text="Set Sail in the Atlantic Ocean visiting Uncharted Waters" 
+                        {projects.map((project) => (
+                        <CardItem key={project.id}
+                                  src="images/img-3.jpg"
+                                  text={project.name}
+                                  description={project.description}
+                                  count_member="10/20"
+                                  status="in progress"
+                                  label={project.category}
+                                  path="/services">
+                        </CardItem>
 
-                            description="Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1 Description project 1"
-                            count_member="10/20"
-                            status="in progress"
-
-                            label="Website"
-                            path="/services"
-                        />
-                        <CardItem 
-                            src="images/img-4.jpg" 
-                            text="Experience Football on Top of the Himilayan Mountains" 
-                            label="Mobile App"
-                            path="/products"
-                        />
-                        <CardItem 
-                            src="images/img-8.jpg" 
-                            text="Ride through the Sahara Desert on a guided camel tour" 
-                            label="Adrenaline" 
-                            path="/sign-up"
-                        />
-                        <CardItem 
-                            src="images/img-8.jpg" 
-                            text="Ride through the Sahara Desert on a guided camel tour" 
-                            label="Adrenaline" 
-                            path="/sign-up"
-                        />
-                        <CardItem 
-                            src="images/img-8.jpg" 
-                            text="Ride through the Sahara Desert on a guided camel tour" 
-                            label="Adrenaline" 
-                            path="/sign-up"
-                        />
+                            ))}
                     </ul>
                 </div>
             </div>
+            )}
         </div>
     );
 }

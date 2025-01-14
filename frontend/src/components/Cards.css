@@ -29,8 +29,15 @@ h1 {
 
 .cards__items {
   /* margin-bottom: 24px; */
+    display: flex;
+    flex-wrap: wrap;
 
 
+}
+
+.cards__items > .cards__item {
+    /*min-width: 30%;*/
+    /*max-width: 30%;*/
 }
 
 .cards__item {
@@ -38,6 +45,7 @@ h1 {
   flex: 1;
   margin: 1rem 1rem;
   border-radius: 10px;
+    /*width: 30%;*/
 }
 
 .cards__item__link {
@@ -122,44 +130,53 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .cards__items {
-    /* display: flex; */
+/*@media only screen and (min-width: 768px) {*/
+/*  .cards__items {*/
+/*    !* display: flex; *!*/
 
 
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+/*    display: grid;*/
+/*    grid-template-columns: repeat(2, auto);*/
 
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 0 0 49%;
-  max-width: 49%; */
+/*  !* display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: wrap;*/
+/*  flex: 0 0 49%;*/
+/*  max-width: 49%; *!*/
 
-  }
-}
+/*  }*/
+/*}*/
 
-@media only screen and (min-width: 1024px) {
-  .cards__items {
-    /* display: flex; */
+/*@media only screen and (min-width: 1024px) {*/
+/*  .cards__items {*/
+/*    !* display: flex; *!*/
 
 
-    /* display: grid;
-  grid-template-columns: repeat(2, auto); */
+/*    !* display: grid;*/
+/*  grid-template-columns: repeat(2, auto); *!*/
 
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 0 0 49%;
-  max-width: 49%; */
-  grid-template-columns: repeat(3, auto);
-  }
+/*  !* display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: wrap;*/
+/*  flex: 0 0 49%;*/
+/*  max-width: 49%; *!*/
+/*  grid-template-columns: repeat(3, auto);*/
+/*  }*/
+/*}*/
+
+
+@media only screen and (max-width: 768px) {
+    .cards__items {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
   .cards__item {
     margin-bottom: 2rem;
   }
+
+
 }
 
 
@@ -285,6 +302,10 @@ h1 {
     background: #1b1919;
     color: #fff;
     transition: all 0.3s ease-out;
+}
+
+.cards__item__buttons {
+    margin-top: 50px;
 }
 
 .cards__item__buttons__parent .cards__item__buttons .join_project_btn {

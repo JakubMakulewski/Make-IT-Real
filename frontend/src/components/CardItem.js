@@ -26,16 +26,19 @@ function CardItem(props) {
                     </div>
                     {/*<div className="cards__item__info">*/}
                     <div className="cards__item__buttons__parent">
-                        <div className="cards__item__status">
-                            <div className="status_icon">{props.status}</div>
-                        </div>
+
+                        {/*STATUS - funkcja do rozszerzenia aplikacji*/}
+                        {/*<div className="cards__item__status">*/}
+                        {/*    <div className="status_icon">{props.status}</div>*/}
+                        {/*</div>*/}
                         <div className="cards__item__buttons">
                             {/*<h5 className="cards__item__text">{props.text}</h5>*/}
 
-                            <div className="member_count">
-                                <i className="fas fa-users"></i>
-                                <span className="">{props.count_member}</span>
-                            </div>
+                            {/*MEMBER COUNT - funkcja do rozszerzenia aplikacji*/}
+                            {/*<div className="member_count">*/}
+                            {/*    <i className="fas fa-users"></i>*/}
+                            {/*    <span className="">{props.count_member}</span>*/}
+                            {/*</div>*/}
                             <a
                                 className="join_project_btn"
                                 // onClick={() => setIsPrivate(!isPrivate)}
