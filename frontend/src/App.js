@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/pages/Home';
@@ -21,11 +22,16 @@ function App() {
           <Route path="/services" component={Services} />
           <Route path="/products" component={Products} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/project-details" component={ProjectDetails} />
+          {/* <Route path="/project-details" component={ProjectDetails} /> */}
+
+          <Route path="/projects/:id/tasks" component={ProjectDetails} />
+
+
           <Route path="/projects" component={ProjectList} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
         </Switch>
+        <Footer/>
       </Router>
     </>
   );

@@ -29,9 +29,12 @@ h1 {
 
 .cards__items {
   /* margin-bottom: 24px; */
-    display: flex;
-    flex-wrap: wrap;
-
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 kolumny o równej szerokości */
+    gap: 20px;  /* Odstęp między blokami */
+    padding: 20px;  /* Padding wewnętrzny sekcji */
 
 }
 
@@ -42,7 +45,7 @@ h1 {
 
 .cards__item {
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   margin: 1rem 1rem;
   border-radius: 10px;
     /*width: 30%;*/
@@ -165,19 +168,25 @@ h1 {
 /*}*/
 
 
+@media only screen and (max-width: 1024px) {
+  .cards__item {
+    margin-bottom: 2rem;
+  }
+
+  .cards__items {
+    grid-template-columns: repeat(2, 1fr);  /* 2 kolumny na ekranach poniżej 1024px */
+  }
+
+
+}
+
+
 @media only screen and (max-width: 768px) {
     .cards__items {
         display: block;
     }
 }
 
-@media only screen and (max-width: 1024px) {
-  .cards__item {
-    margin-bottom: 2rem;
-  }
-
-
-}
 
 
 

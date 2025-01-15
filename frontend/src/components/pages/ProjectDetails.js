@@ -8,7 +8,7 @@ function ProjectDetails() {
     return (
         <>
             <CardItemMore />
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }

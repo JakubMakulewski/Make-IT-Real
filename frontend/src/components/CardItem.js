@@ -18,7 +18,7 @@ function CardItem(props) {
                         <figure className="cards__item__pic-wrap" data-category={props.label}>
                             <img
                                 src={props.src}
-                                alt="Travel Image"
+                                // alt="Travel Image"
                                 className="cards__item__img"
                             />
                         </figure>
@@ -42,7 +42,11 @@ function CardItem(props) {
                             <a
                                 className="join_project_btn"
                                 // onClick={() => setIsPrivate(!isPrivate)}
-                                href="/project-details"
+                                // href="/project-details"
+                                href={props.path}
+
+                                // id={props.key}
+                                // text={props.text}
                             >
                                 {isPrivate ? <i className="fas fa-lock"></i> : "Join"}
                             </a>

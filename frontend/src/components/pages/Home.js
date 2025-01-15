@@ -9,7 +9,7 @@ function Home() {
         <>
             {/* <HeroSection /> */}
             <Cards />
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }

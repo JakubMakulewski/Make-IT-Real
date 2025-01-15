@@ -74,7 +74,7 @@ function Cards() {
 
     return (
         <div className="cards">
-            <h1>Project List</h1>
+            <h1>Projects List</h1>
             <div className="above_project_list">
                 <button className="black_button">Add project</button>
             </div>
@@ -103,17 +103,28 @@ function Cards() {
                                   src={"images/img-"+randomNumberInRange(1, 9)+".jpg"}
                                   text={project.name}
                                   description={project.description}
-                                  count_member="10/20"
-                                  status="in progress"
+                                //   count_member="10/20"
+                                //   status="in progress"
                                   label={project.category}
-                                  path="/services">
+                                //   path="/project-details"
+                                  path={`/projects/${project.id}/tasks`}
+                        >
                         </CardItem>
 
                             ))}
                     </ul>
                 </div>
             </div>
+            
             )}
+            <div>
+                <button onClick={handlePreviousPage} disabled={pageNo === 0}>
+                    Poprzednia strona
+                </button>
+                <button onClick={handleNextPage} disabled={pageNo === totalPages - 1}>
+                    Następna strona
+                </button>
+            </div>
         </div>
     );
 }
