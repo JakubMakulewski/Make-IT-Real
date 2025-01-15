@@ -66,6 +66,12 @@ function Cards() {
         }
     };
 
+
+    const randomNumberInRange = (min, max) => {
+        return Math.floor(Math.random()
+            * (max - min + 1)) + min;
+    };
+
     return (
         <div className="cards">
             <h1>Project List</h1>
@@ -94,7 +100,7 @@ function Cards() {
                     <ul className="cards__items">
                         {projects.map((project) => (
                         <CardItem key={project.id}
-                                  src="images/img-3.jpg"
+                                  src={"images/img-"+randomNumberInRange(1, 9)+".jpg"}
                                   text={project.name}
                                   description={project.description}
                                   count_member="10/20"
