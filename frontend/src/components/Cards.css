@@ -269,6 +269,7 @@ h1 {
     font-size: 1rem;
     line-height: 1.5rem;
     /*margin: 1rem 0;*/
+    margin-top: 2rem;
 }
 
 .cards__item__buttons {
@@ -384,4 +385,14 @@ h1 {
 .member_progress_bar progress {
     width: 80%;
     margin-right: 10px;
+}
+
+.paginationButtons {
+    display: flex;
+    justify-content: center;
+}
+
+.paginationButtons button {
+    width: 150px;
+    height: 45px;
 }

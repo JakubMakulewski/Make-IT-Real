@@ -117,12 +117,12 @@ function Cards() {
             </div>
             
             )}
-            <div>
+            <div className="paginationButtons">
                 <button onClick={handlePreviousPage} disabled={pageNo === 0}>
-                    Poprzednia strona
+                    Previous page
                 </button>
                 <button onClick={handleNextPage} disabled={pageNo === totalPages - 1}>
-                    Następna strona
+                    Next page
                 </button>
             </div>
         </div>
