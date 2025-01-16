@@ -70,7 +70,7 @@ h1 {
 
 .cards__item__link:hover {
     /*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);*/
-    box-shadow: 0 2px 20px 2px rgb(0 0 0 / 60%);
+    box-shadow: 0 2px 15px 5px rgb(0 0 0 / 35%);
     transition: all 0.3s ease-out;
 }
 
@@ -408,4 +408,9 @@ h1 {
 
 .card__item__more > * {
     margin: 1rem 0;
+}
+
+.project_card > * {
+    /* margin: 15px 0 15px 0; */
+    margin-bottom: 1rem;
 }
