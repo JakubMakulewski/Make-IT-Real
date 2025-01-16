@@ -45,7 +45,10 @@ const CardItemMore = () => {
         }
     };
 
-
+    const randomNumberInRange = (min, max) => {
+        return Math.floor(Math.random()
+            * (max - min + 1)) + min;
+    };
 
     return (
         <div className="card__item__more__wrapper">
@@ -53,36 +56,44 @@ const CardItemMore = () => {
             {error && <p style={{color: 'red'}}>{error}</p>}
             {!loading && !error && project && (
 
-            <div className="card__item__more">
-                <h2>{project.name}</h2>
+                <div className="card__item__more">
+                    <h2>{project.name}</h2>
 
-                {/*STATUS - funkcja do rozszerzenia aplikacji*/}
-                {/* <div className="cards__item__status">
+                    <figure className="cards__item__pic-wrap" data-category={project.category}>
+                        <img
+                            src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                            // alt="Travel Image"
+                            className="cards__item__img"
+                        />
+                    </figure>
+
+                    {/*STATUS - funkcja do rozszerzenia aplikacji*/}
+                    {/* <div className="cards__item__status">
                     <div className="status_icon">{project.status}</div>
                 </div> */}
-                <p className="cards__item__text__description">{project.description}</p>
+                    <p className="cards__item__text__description">{project.description}</p>
 
-                {/*MEMBER COUNT - funkcja do rozszerzenia aplikacji*/}
-                {/* <div className="member_progress_bar">
+                    {/*MEMBER COUNT - funkcja do rozszerzenia aplikacji*/}
+                    {/* <div className="member_progress_bar">
                     <i className="fas fa-users"></i>
                     <progress value={project.participants} max={project.maxParticipants}></progress>
                     <span>{project.participants}/{project.maxParticipants}</span>
                 </div> */}
 
 
-                {/*{project.isPrivate ? (*/}
-                {/*    <button disabled style={{cursor: 'not-allowed'}}>🔒 Prywatny</button>*/}
-                {/*) : (*/}
-                {/*    <button>Dołącz</button>*/}
-                {/*)}*/}
+                    {/*{project.isPrivate ? (*/}
+                    {/*    <button disabled style={{cursor: 'not-allowed'}}>🔒 Prywatny</button>*/}
+                    {/*) : (*/}
+                    {/*    <button>Dołącz</button>*/}
+                    {/*)}*/}
 
-                <Tasks/>
-                <button className="join_project_btn">
-                    {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
-                </button>
-            </div>
+                    <Tasks/>
+                    <button className="join_project_btn">
+                        {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
+                    </button>
+                </div>
                 // }
-        )}
+            )}
         </div>
 
 

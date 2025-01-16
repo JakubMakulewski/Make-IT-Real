@@ -55,9 +55,11 @@ h1 {
   display: flex;
   flex-flow: column;
   width: 100%;
-  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.35);
-  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.35));
-  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.35));
+  /*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.35);*/
+  box-shadow: 0 2px 5px 2px rgb(0 0 0 / 40%);
+  /*-webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.35));*/
+  /*filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.35));*/
+  filter: drop-shadow(0 0px 0px rgba(0, 0, 0, 0.25));
   border-radius: 10px;
   overflow: hidden;
   text-decoration: none;
@@ -67,7 +69,8 @@ h1 {
 }
 
 .cards__item__link:hover {
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);
+    /*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);*/
+    box-shadow: 0 2px 20px 2px rgb(0 0 0 / 60%);
     transition: all 0.3s ease-out;
 }
 
@@ -76,7 +79,12 @@ h1 {
   width: 100%;
   padding-top: 30%;
   overflow: hidden;
-    margin: 1em 0;
+    /*margin: 1em 0;*/
+}
+
+.card__item__more .cards__item__pic-wrap {
+    width: 90%;
+    padding: 125px 0;
 }
 
 .fade-img {
@@ -269,7 +277,7 @@ h1 {
     font-size: 1rem;
     line-height: 1.5rem;
     /*margin: 1rem 0;*/
-    margin-top: 2rem;
+    /*margin: 2rem;*/
 }
 
 .cards__item__buttons {
@@ -395,4 +403,9 @@ h1 {
 .paginationButtons button {
     width: 150px;
     height: 45px;
+}
+
+
+.card__item__more > * {
+    margin: 1rem 0;
 }

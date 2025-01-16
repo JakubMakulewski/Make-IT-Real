@@ -3,6 +3,7 @@ import CardItem from './CardItem';
 import './Cards.css';
 import {Button} from "./Button";
 import axios from "axios";
+// import myImage from '../images/img-11.jpg';
 
 // import './Navbar.css';
 
@@ -100,7 +101,8 @@ function Cards() {
                     <ul className="cards__items">
                         {projects.map((project) => (
                         <CardItem key={project.id}
-                                  src={"images/img-"+randomNumberInRange(1, 9)+".jpg"}
+                                  src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                            // src={require('../images/img-10.jpg')}
                                   text={project.name}
                                   description={project.description}
                                 //   count_member="10/20"
