@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import "./LoginComponent.css"
-import {Link} from "react-router-dom";
-import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const LoginComponent = () => {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
-    //const [userId, setUserId] = useState('');
     const [error, setError] = useState('');
     const [token, setToken] = useState('');
     let loggedIn = localStorage.getItem('jwtToken');
@@ -25,6 +24,7 @@ const LoginComponent = () => {
             const accessToken = response.data.accessToken;
             setToken(accessToken);
             localStorage.setItem('jwtToken', accessToken);
+            localStorage.setItem('userEmail', jwtDecode(accessToken).sub);
             console.log('Zalogowano pomyślnie! Token JWT:', accessToken);
             window.location.reload();
         }
