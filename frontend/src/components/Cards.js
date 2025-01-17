@@ -3,6 +3,7 @@ import CardItem from './CardItem';
 import './Cards.css';
 import {Button} from "./Button";
 import axios from "axios";
+import {Link} from "react-router-dom";
 // import myImage from '../images/img-11.jpg';
 
 // import './Navbar.css';
@@ -76,9 +77,9 @@ function Cards() {
     return (
         <div className="cards">
             <h1>Projects List</h1>
-            <div className="above_project_list">
+            <Link className="above_project_list" to="/add-project">
                 <button className="black_button">Add project</button>
-            </div>
+            </Link>
             {loading && <p>Ładowanie...</p>}
             {error && <p style={{color: 'red'}}>{error}</p>}
             {!loading && !error && (
@@ -101,7 +102,7 @@ function Cards() {
                     <ul className="cards__items">
                         {projects.map((project) => (
                         <CardItem key={project.id}
-                                  //src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                                  src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
                             // src={require('../images/img-10.jpg')}
                                   text={project.name}
                                   description={project.description}

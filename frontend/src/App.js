@@ -12,6 +12,7 @@ import LoginComponent from "./components/userComponents/LoginComponent";
 import RegisterComponent from "./components/userComponents/RegisterComponent";
 import ProjectList from "./components/projectCheckoutPage/project";
 import AccountComponent from "./components/userComponents/AccountComponent";
+import AddProject from "./components/AddProject";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
           <Route path="/account" component={AccountComponent} />
+
+          <Route path="/add-project" component={AddProject} />
         </Switch>
         <Footer/>
       </Router>
