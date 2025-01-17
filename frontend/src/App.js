@@ -11,6 +11,7 @@ import ProjectDetails from "./components/pages/ProjectDetails";
 import LoginComponent from "./components/userComponents/LoginComponent";
 import RegisterComponent from "./components/userComponents/RegisterComponent";
 import ProjectList from "./components/projectCheckoutPage/project";
+import AccountComponent from "./components/userComponents/AccountComponent";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/projects" component={ProjectList} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
+          <Route path="/account" component={AccountComponent} />
         </Switch>
         <Footer/>
       </Router>

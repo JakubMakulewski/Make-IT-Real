@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Redirect from "react-router-dom/es/Redirect";
 
 const RegisterComponent = () => {
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [groups, setGroups] = useState([]); // Jeśli użytkownik wybiera grupy
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
@@ -22,29 +22,20 @@ const RegisterComponent = () => {
             });
 
             setError('');
-            setSuccess('Rejestracja zakończona sukcesem! Możesz się teraz zalogować.');
+            setSuccess('Registration successful! You can now log in.');
             console.log('Rejestracja zakończona sukcesem:', response.data);
         } catch (err) {
             setSuccess('');
-            setError('Rejestracja nie powiodła się. Sprawdź dane i spróbuj ponownie.');
-        }
-    };
-
-    const handleGroupChange = (e) => {
-        const value = e.target.value;
-        if (groups.includes(value)) {
-            setGroups(groups.filter((group) => group !== value)); // Usuń grupę, jeśli już jest wybrana
-        } else {
-            setGroups([...groups, value]); // Dodaj grupę, jeśli nie jest jeszcze wybrana
+            setError('Registration failed. Username/Email already in use!');
         }
     };
 
     return (
         <div>
-            <h2>Rejestracja</h2>
+            <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <div>
-                    <label>Imię:</label>
+                    <label>Name: </label>
                     <input
                         type="text"
                         value={name}
@@ -53,7 +44,7 @@ const RegisterComponent = () => {
                     />
                 </div>
                 <div>
-                    <label>Nazwa użytkownika:</label>
+                    <label>Username: </label>
                     <input
                         type="text"
                         value={username}
@@ -62,7 +53,7 @@ const RegisterComponent = () => {
                     />
                 </div>
                 <div>
-                    <label>Hasło:</label>
+                    <label>Password: </label>
                     <input
                         type="password"
                         value={password}
@@ -71,7 +62,7 @@ const RegisterComponent = () => {
                     />
                 </div>
                 <div>
-                    <label>Email:</label>
+                    <label>Email: </label>
                     <input
                         type="email"
                         value={email}
@@ -79,35 +70,12 @@ const RegisterComponent = () => {
                         required
                     />
                 </div>
-
-                {/* Jeśli użytkownik może wybierać grupy */}
-                <div>
-                    <label>Wybierz grupy:</label>
-                    <div>
-                        <input
-                            type="checkbox"
-                            value="Group1"
-                            onChange={handleGroupChange}
-                        />
-                        Group1
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            value="Group2"
-                            onChange={handleGroupChange}
-                        />
-                        Group2
-                    </div>
-                    {/* Dodaj więcej grup w razie potrzeby */}
-                </div>
-
-                <button type="submit">Zarejestruj się</button>
+                <button type="submit">Register</button>
             </form>
 
             {/* Wyświetlanie komunikatu błędu lub sukcesu */}
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+            {success && <Redirect to="/login" />}
         </div>
     );
 };

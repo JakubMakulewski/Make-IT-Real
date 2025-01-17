@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { Button } from './Button';
+import {render} from "react-dom";
 
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(localStorage.getItem('jwtToken'));
     
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -19,6 +21,10 @@ function Navbar() {
         }
     };
 
+    const checkLogin = () => {
+        setLoggedIn(localStorage.getItem('jwtToken'));
+    }
+
     useEffect(() => {
         showButton();
     }, []);
@@ -26,6 +32,7 @@ function Navbar() {
     const logoTitle = 'Make it Real';
 
     window.addEventListener('resize', showButton);
+    window.addEventListener('click', checkLogin);
 
     return (
         <>
@@ -40,36 +47,36 @@ function Navbar() {
                         </div>
                         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                             <li className="nav-item">
-                                <Link 
-                                    to="/" 
-                                    className="nav-links" 
+                                <Link
+                                    to="/"
+                                    className="nav-links"
                                     onClick={closeMobileMenu}
                                 >
                                     Home
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link 
-                                    to="/services" 
-                                    className="nav-links" 
+                                <Link
+                                    to="/services"
+                                    className="nav-links"
                                     onClick={closeMobileMenu}
                                 >
                                     My projects
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link 
-                                    to="/products" 
-                                    className="nav-links" 
+                                <Link
+                                    to="/products"
+                                    className="nav-links"
                                     onClick={closeMobileMenu}
                                 >
                                     Calendar
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link 
-                                    to="/sign-up" 
-                                    className="nav-links-mobile" 
+                                <Link
+                                    to="/sign-up"
+                                    className="nav-links-mobile"
                                     onClick={closeMobileMenu}
                                 >
                                     Sign-up
@@ -81,7 +88,7 @@ function Navbar() {
                         {/* <form>
                             <input type='text' placeholder='Search...'></input>
                         </form> */}
-                        {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+                        {button && <Button buttonStyle="btn--outline">{loggedIn ? 'ACCOUNT' : 'SIGN IN'}</Button>}
                     </div>
                 </div>
             </nav>

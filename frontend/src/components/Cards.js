@@ -101,7 +101,7 @@ function Cards() {
                     <ul className="cards__items">
                         {projects.map((project) => (
                         <CardItem key={project.id}
-                                  src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                                  //src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
                             // src={require('../images/img-10.jpg')}
                                   text={project.name}
                                   description={project.description}
