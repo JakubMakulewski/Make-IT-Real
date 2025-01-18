@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddProject.css';
 import axios from "axios";
 import Redirect from "react-router-dom/es/Redirect";
@@ -9,20 +9,50 @@ function AddProject() {
     const [description, setDescription] = useState('');
 
     const [category, setCategory] = useState('');
-    // const [categories, setCategories] = useState([]);
-
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
 
+    // const [categories, setCategories] = useState([]);
+    const [projects, setProjects] = useState([]); // Stan na listę projektów
+
+    useEffect(() => {
+        fetchProjects();
+    }, []);
+
+    const fetchProjects = async () => {
+        const token = localStorage.getItem('jwtToken'); // Pobierz token JWT z localStorage
+        if (!token) {
+            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
+            return;
+        }
+
+        try {
+            const response = await axios.get('http://localhost:5051/projects', {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Dodanie tokena JWT do nagłówka
+                },
+            });
+
+            const data = response.data;
+            setProjects(data.content); // `content` zawiera listę projektów
+        } catch (err) {
+            setError('Nie udało się załadować projektów.');
+        }
+    };
+
+
+
+
     const handleAddProject = async (e) => {
-
-
         e.preventDefault();
-    // const handleAddProject = async () => {
 
         const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
+            return;
+        }
 
         try {
             const response = await axios.post(
@@ -58,7 +88,7 @@ function AddProject() {
             <h1>Add Project</h1>
             <div className="add_project_container">
                 <p>Fill in the details</p>
-
+                {!error && (
                 <form className="add_project_form" onSubmit={handleAddProject}>
                     <div className="form_inputs_text">
                         <div className="form_textfield_group">
@@ -73,16 +103,25 @@ function AddProject() {
                         </div>
                         <div className="form_textfield_group">
                             <label>Category: </label>
-                            <input
-                                type="text"
+                            {/*<input*/}
+                            {/*    type="text"*/}
+                            {/*    value={category}*/}
+                            {/*    onChange={(e) => setCategory(e.target.value)}*/}
+                            {/*    placeholder="category"*/}
+                            {/*    required*/}
+                            {/*/>*/}
+                            <select
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
-                                placeholder="category"
                                 required
-                            />
-                            {/*<select>*/}
-                            {/*    /!*<option value={}>{}</option>*!/*/}
-                            {/*</select>*/}
+                            >
+                                <option value="" disabled>Select a category</option>
+                                {projects.map((project) => (
+                                    <option key={project.id} value={project.category}>
+                                        {project.category}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div className="form_textfield_group">
                             <label>Description: </label>
@@ -100,6 +139,7 @@ function AddProject() {
                     </div>
 
                 </form>
+                )}
             </div>
             {/* Wyświetlanie komunikatu błędu lub sukcesu */}
             {error && <p style={{color: 'red'}}>{error}</p>}
