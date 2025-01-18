@@ -15,7 +15,8 @@ function AddProject() {
 
 
     // const [categories, setCategories] = useState([]);
-    const [projects, setProjects] = useState([]); // Stan na listę projektów
+    // const [projects, setProjects] = useState([]); // Stan na listę projektów
+    const [categories, setCategories] = useState([]); // Stan na unikalne kategorie
 
     useEffect(() => {
         fetchProjects();
@@ -35,8 +36,9 @@ function AddProject() {
                 },
             });
 
-            const data = response.data;
-            setProjects(data.content); // `content` zawiera listę projektów
+            const projects = response.data.content; // `content` zawiera listę projektów
+            const uniqueCategories = [...new Set(projects.map((project) => project.category))];
+            setCategories(uniqueCategories); // Przechowaj unikalne kategorie w stanie
         } catch (err) {
             setError('Nie udało się załadować projektów.');
         }
@@ -115,10 +117,12 @@ function AddProject() {
                                 onChange={(e) => setCategory(e.target.value)}
                                 required
                             >
-                                <option value="" disabled>Select a category</option>
-                                {projects.map((project) => (
-                                    <option key={project.id} value={project.category}>
-                                        {project.category}
+                                <option value="" disabled>
+                                    Select a category
+                                </option>
+                                {categories.map((cat, index) => (
+                                    <option key={index} value={cat}>
+                                        {cat}
                                     </option>
                                 ))}
                             </select>
