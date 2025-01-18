@@ -3,8 +3,8 @@ import CardItem from './CardItem';
 import './Cards.css';
 import {Button} from "./Button";
 import axios from "axios";
-import {Link} from "react-router-dom";
 // import myImage from '../images/img-11.jpg';
+import { Link } from "react-router-dom";
 
 // import './Navbar.css';
 
@@ -77,9 +77,9 @@ function Cards() {
     return (
         <div className="cards">
             <h1>Projects List</h1>
-            <Link className="above_project_list" to="/add-project">
-                <button className="black_button">Add project</button>
-            </Link>
+            <div className="above_project_list">
+                <Link className="black_button" to="add-project">Add project</Link>
+            </div>
             {loading && <p>Ładowanie...</p>}
             {error && <p style={{color: 'red'}}>{error}</p>}
             {!loading && !error && (

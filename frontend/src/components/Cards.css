@@ -224,6 +224,8 @@ h1 {
     width: 7.5em;
     /*height: 2em;*/
     text-align: center;
+    text-decoration: none;
+    color: #1b1919;
 }
 
 .black_button:hover {
