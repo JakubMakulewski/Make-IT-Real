@@ -4,6 +4,7 @@ import './Cards.css';
 import {Button} from "./Button";
 import axios from "axios";
 // import myImage from '../images/img-11.jpg';
+import { Link } from "react-router-dom";
 
 // import './Navbar.css';
 
@@ -36,7 +37,7 @@ function Cards() {
             const response = await axios.get('http://localhost:5051/projects', {
                 params: {
                     pageNo: pageNo,
-                    pageSize: 10, // Liczba elementów na stronę
+                    pageSize: 12, // Liczba elementów na stronę
                     sortBy: 'id', // Sortowanie po polu
                     sortDir: 'asc', // Kierunek sortowania
                 },
@@ -77,7 +78,7 @@ function Cards() {
         <div className="cards">
             <h1>Projects List</h1>
             <div className="above_project_list">
-                <button className="black_button">Add project</button>
+                <Link className="black_button" to="add-project">Add project</Link>
             </div>
             {loading && <p>Ładowanie...</p>}
             {error && <p style={{color: 'red'}}>{error}</p>}
@@ -101,7 +102,7 @@ function Cards() {
                     <ul className="cards__items">
                         {projects.map((project) => (
                         <CardItem key={project.id}
-                                  //src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                                  src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
                             // src={require('../images/img-10.jpg')}
                                   text={project.name}
                                   description={project.description}

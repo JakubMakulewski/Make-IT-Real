@@ -1,0 +1,53 @@
+.task-card {
+    background-color: #ffffff; /* Tło karty */
+    border: 1px solid #dcdcdc; /* Obwódka */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    padding: 12px; /* Wewnętrzny odstęp */
+    margin-bottom: 12px; /* Odstęp między kartami */
+    cursor: grab; /* Wskaźnik myszy na uchwycenie */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+    transition: box-shadow 0.3s ease, transform 0.2s ease; /* Płynne animacje */
+}
+
+.task-card:active {
+    cursor: grabbing; /* Wskaźnik myszy podczas przeciągania */
+    transform: scale(1.05); /* Powiększenie podczas przeciągania */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Większy cień przy aktywności */
+}
+
+.task-card:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Cień przy najechaniu myszą */
+}
+
+.task-card-title {
+    font-size: 16px; /* Rozmiar czcionki tytułu */
+    font-weight: bold; /* Wyróżnienie tytułu */
+    margin-bottom: 8px; /* Odstęp pod tytułem */
+    color: #333; /* Kolor tekstu */
+}
+
+.task-card-details {
+    font-size: 14px; /* Rozmiar czcionki szczegółów */
+    color: #666; /* Kolor tekstu szczegółów */
+    line-height: 1.5; /* Wysokość linii dla lepszej czytelności */
+}
+
+.task-card-footer {
+    margin-top: 12px; /* Odstęp u góry */
+    text-align: right; /* Wyrównanie do prawej */
+}
+
+.task-card-footer button {
+    background-color: #007bff; /* Kolor przycisku */
+    color: #fff; /* Kolor tekstu */
+    border: none; /* Brak obramowania */
+    border-radius: 4px; /* Zaokrąglenie */
+    padding: 6px 12px; /* Wewnętrzne odstępy */
+    font-size: 14px; /* Rozmiar tekstu */
+    cursor: pointer; /* Wskaźnik myszy */
+    transition: background-color 0.3s ease; /* Animacja zmiany koloru */
+}
+
+.task-card-footer button:hover {
+    background-color: #0056b3; /* Ciemniejszy niebieski po najechaniu */
+}

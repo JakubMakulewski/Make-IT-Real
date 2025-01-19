@@ -61,7 +61,7 @@ const CardItemMore = () => {
 
                     <figure className="cards__item__pic-wrap" data-category={project.category}>
                         <img
-                            //src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                            src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
                             // alt="Travel Image"
                             className="cards__item__img"
                         />

@@ -75,11 +75,13 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link
-                                    to="/sign-up"
+                                    // to="/sign-up"
+                                    to="/login"
                                     className="nav-links-mobile"
                                     onClick={closeMobileMenu}
                                 >
-                                    Sign-up
+                                    {/*Sign-up*/}
+                                    {loggedIn ? 'ACCOUNT' : 'SIGN IN'}
                                 </Link>
                             </li>
                         </ul>

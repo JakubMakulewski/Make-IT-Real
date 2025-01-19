@@ -1,0 +1,91 @@
+.add_project {
+    padding: 4rem 0 4rem 0;
+    /*background: #fff;*/
+}
+
+.add_project h1 {
+
+}
+
+.add_project_container {
+    /*display: flex;*/
+    /*flex-flow: column;*/
+
+    /* align-items: center; */
+    /* min-width: 100%; */
+    /* width: 90%; */
+    width: 75%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.add_project_container p {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.add_project_form {
+
+}
+
+.form_inputs_text {
+    /*display: table-caption;*/
+    /*width: 100%;*/
+    margin-bottom: 2rem;
+}
+
+.form_textfield_group {
+    /*display: table-caption;*/
+    /*width: 1000px;*/
+    margin-bottom: 1rem;
+}
+
+.form_textfield_group label {
+    /*margin-bottom: 0.5em;*/
+
+}
+
+.form_textfield_group input {
+    width: 100%;
+    padding: 0.75em 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #1b1919;
+}
+
+.form_textfield_group select {
+    width: 100%;
+    padding: 0.75em 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #1b1919 #6e6666 #6e6666 #1b1919;
+}
+
+.form_button {
+    display: flex;
+    justify-content: right;
+}
+
+.form_button button {
+
+padding: 5px 8px;
+    font-size: 1.2rem;
+    background-color: transparent;
+
+    border: 3px solid #1b1919;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 25%;
+
+    text-align: center;
+    text-decoration: none;
+    color: #1b1919;
+}
+
+.form_button button:hover {
+    background: #1b1919;
+    color: #fff;
+    transition: all 0.3s ease-out;
+}

@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import "./LoginComponent.css"
-import {Link} from "react-router-dom";
-import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const LoginComponent = () => {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
-    //const [userId, setUserId] = useState('');
     const [error, setError] = useState('');
     const [token, setToken] = useState('');
     let loggedIn = localStorage.getItem('jwtToken');
@@ -25,6 +24,7 @@ const LoginComponent = () => {
             const accessToken = response.data.accessToken;
             setToken(accessToken);
             localStorage.setItem('jwtToken', accessToken);
+            localStorage.setItem('userEmail', jwtDecode(accessToken).sub);
             console.log('Zalogowano pomyślnie! Token JWT:', accessToken);
             window.location.reload();
         }
@@ -35,46 +35,53 @@ const LoginComponent = () => {
     };
 
     return (
-        <div>
+        <div className="add_project">
             {loggedIn &&
                 <Redirect to={"/account"}/>
             }
             {!loggedIn &&
-            <div className="notLoggedIn">
-                <h2>Log in</h2>
-                <form onSubmit={handleLogin}>
-                    <div>
-                        <label>Username or Email: </label>
-                        <input
-                            type="text"
-                            value={usernameOrEmail}
-                            onChange={(e) => setUsernameOrEmail(e.target.value)}
-                            required
-                        />
+                <div className="notLoggedIn">
+                    <h1>Log in</h1>
+                    <div className="add_project_container">
+                        <form onSubmit={handleLogin}>
+                            <div className="form_textfield_group">
+                                <label>Username or Email: </label>
+                                <input
+                                    type="text"
+                                    value={usernameOrEmail}
+                                    onChange={(e) => setUsernameOrEmail(e.target.value)}
+                                    placeholder="username or email"
+                                    required
+                                />
+                            </div>
+                            <div className="form_textfield_group">
+                                <label>Password: </label>
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="password"
+                                    required
+                                />
+                            </div>
+                            <div className="form_button">
+                                <button type="submit">Log in</button>
+                            </div>
+                        </form>
+                        {token && <Redirect to="/"/>}
+                        {error && <p style={{color: 'red'}}>{error}</p>}
+                        <div className="no_account">
+                            <h2>No account?</h2>
+                            <Link to="/register">
+                                <button>Sign up!</button>
+                            </Link>
+                            {/*Don't have an account? <Link to="/register" className="sign_up">Sign up!</Link>*/}
+                        </div>
                     </div>
-                    <div>
-                        <label>Password: </label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
                     </div>
-                    <button type="submit">Log in</button>
-                </form>
-                {token && <Redirect to="/"/>}
-                {error && <p style={{color: 'red'}}>{error}</p>}
-                <div>
-                    <h2>No account?</h2>
-                    <Link to="/register">
-                        <button>Sign up!</button>
-                    </Link>
+                    }
                 </div>
-            </div>
-            }
-        </div>
-    );
-};
+                );
+            };
 
-export default LoginComponent;
+            export default LoginComponent;

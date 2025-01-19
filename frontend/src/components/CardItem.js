@@ -39,17 +39,18 @@ function CardItem(props) {
                             {/*    <i className="fas fa-users"></i>*/}
                             {/*    <span className="">{props.count_member}</span>*/}
                             {/*</div>*/}
-                            <a
+                            <Link to={props.path}
                                 className="join_project_btn"
                                 // onClick={() => setIsPrivate(!isPrivate)}
                                 // href="/project-details"
-                                href={props.path}
+
+                                // href={props.path}
 
                                 // id={props.key}
                                 // text={props.text}
                             >
                                 {isPrivate ? <i className="fas fa-lock"></i> : "Join"}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

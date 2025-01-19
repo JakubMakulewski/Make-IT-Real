@@ -31,53 +31,61 @@ const RegisterComponent = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleRegister}>
-                <div>
-                    <label>Name: </label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Username: </label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Password: </label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Email: </label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Register</button>
-            </form>
+        <div className="add_project">
+            <h1>Register</h1>
+            <div className="add_project_container">
+                <form onSubmit={handleRegister}>
+                    <div className="form_textfield_group">
+                        <label>Name: </label>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="name"
+                            required
+                        />
+                    </div>
+                    <div className="form_textfield_group">
+                        <label>Username: </label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="username"
+                            required
+                        />
+                    </div>
+                    <div className="form_textfield_group">
+                        <label>Password: </label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="password"
+                            required
+                        />
+                    </div>
+                    <div className="form_textfield_group">
+                        <label>Email: </label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="email"
+                            required
+                        />
+                    </div>
+                    <div className="form_button">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
 
             {/* Wyświetlanie komunikatu błędu lub sukcesu */}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <Redirect to="/login" />}
-        </div>
-    );
-};
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                {success && <Redirect to="/login"/>}
+            </div>
+            );
+            };
 
-export default RegisterComponent;
+            export default RegisterComponent;
