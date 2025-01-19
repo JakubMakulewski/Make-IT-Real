@@ -1,15 +1,36 @@
-.loggedIn {
-
-}
-
-.notLoggedIn {
-
-}
-
 .no_account {
     text-align: center;
     margin-top: 2rem;
+}
 
+
+.form_button_center{
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.form_button_center button {
+
+    padding: 5px 8px;
+    font-size: 1.2rem;
+    background-color: transparent;
+
+    border: 3px solid #1b1919;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 25%;
+
+    text-align: center;
+    text-decoration: none;
+    color: #1b1919;
+}
+
+.form_button_center button:hover {
+    background: #1b1919;
+    color: #fff;
+    transition: all 0.3s ease-out;
 }
 
 /*.sign_up {*/
