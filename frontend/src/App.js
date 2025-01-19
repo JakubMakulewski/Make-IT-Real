@@ -13,6 +13,18 @@ import RegisterComponent from "./components/userComponents/RegisterComponent";
 import ProjectList from "./components/projectCheckoutPage/project";
 import AccountComponent from "./components/userComponents/AccountComponent";
 import AddProject from "./components/AddProject";
+import JoinProject from "./components/JoinProject";
+import Kanban from "./components/Kanban/Kanban";
+import DragAndDropExample from "./drag-and-drop";
+
+
+const ProjectPage = ({ match }) => (
+    <div>
+      <h1>Project Page</h1>
+      <p>Welcome to project {match.params.id}</p>
+      <Kanban />
+    </div>
+);
 
 function App() {
   return (
@@ -35,11 +47,22 @@ function App() {
           <Route path="/account" component={AccountComponent} />
 
           <Route path="/add-project" component={AddProject} />
+
+
+            {/*
+          do poprawy jeszcze to bedzie
+          <Route path="/join" component={JoinProject} />
+          <Route path="Kanban" component={Kanban} />
+          <Route path="/" exact component={JoinProject} />
+          <Route path="/project/:id" component={ProjectPage} />
+            <Route path="/drag-drop" element={<DragAndDropExample />} */}
+          />
         </Switch>
         <Footer/>
       </Router>
     </>
   );
+
 }
 
 export default App;

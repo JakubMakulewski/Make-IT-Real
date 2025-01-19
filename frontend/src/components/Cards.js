@@ -37,7 +37,7 @@ function Cards() {
             const response = await axios.get('http://localhost:5051/projects', {
                 params: {
                     pageNo: pageNo,
-                    pageSize: 10, // Liczba elementów na stronę
+                    pageSize: 12, // Liczba elementów na stronę
                     sortBy: 'id', // Sortowanie po polu
                     sortDir: 'asc', // Kierunek sortowania
                 },

@@ -50,6 +50,17 @@
     padding: 0.75em 0.5em;
     margin-top: 0.5em;
     border-radius: 5px;
+    border-width: 2px;
+    border-color: #1b1919;
+}
+
+.form_textfield_group select {
+    width: 100%;
+    padding: 0.75em 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #1b1919 #6e6666 #6e6666 #1b1919;
 }
 
 .form_button {
