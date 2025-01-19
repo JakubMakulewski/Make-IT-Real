@@ -1,0 +1,44 @@
+.join-project {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.join-project h2 {
+    margin-bottom: 20px;
+}
+
+.join-project button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.join-project button:hover {
+    background-color: #0056b3;
+}
+
+.join-project button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.join-project button.joined {
+    background-color: #28a745;
+    cursor: not-allowed;
+}
+
+.join-project .message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
