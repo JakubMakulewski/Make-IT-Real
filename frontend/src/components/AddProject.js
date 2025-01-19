@@ -14,35 +14,35 @@ function AddProject() {
     const [success, setSuccess] = useState('');
 
 
-    // const [categories, setCategories] = useState([]);
-    // const [projects, setProjects] = useState([]); // Stan na listę projektów
-    const [categories, setCategories] = useState([]); // Stan na unikalne kategorie
-
-    useEffect(() => {
-        fetchProjects();
-    }, []);
-
-    const fetchProjects = async () => {
-        const token = localStorage.getItem('jwtToken'); // Pobierz token JWT z localStorage
-        if (!token) {
-            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
-            return;
-        }
-
-        try {
-            const response = await axios.get('http://localhost:5051/projects', {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Dodanie tokena JWT do nagłówka
-                },
-            });
-
-            const projects = response.data.content; // `content` zawiera listę projektów
-            const uniqueCategories = [...new Set(projects.map((project) => project.category))];
-            setCategories(uniqueCategories); // Przechowaj unikalne kategorie w stanie
-        } catch (err) {
-            setError('Nie udało się załadować projektów.');
-        }
-    };
+    // // const [categories, setCategories] = useState([]);
+    // // const [projects, setProjects] = useState([]); // Stan na listę projektów
+    // const [categories, setCategories] = useState([]); // Stan na unikalne kategorie
+    //
+    // useEffect(() => {
+    //     fetchProjects();
+    // }, []);
+    //
+    // const fetchProjects = async () => {
+    //     const token = localStorage.getItem('jwtToken'); // Pobierz token JWT z localStorage
+    //     if (!token) {
+    //         setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
+    //         return;
+    //     }
+    //
+    //     try {
+    //         const response = await axios.get('http://localhost:5051/projects', {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`, // Dodanie tokena JWT do nagłówka
+    //             },
+    //         });
+    //
+    //         const projects = response.data.content; // `content` zawiera listę projektów
+    //         const uniqueCategories = [...new Set(projects.map((project) => project.category))];
+    //         setCategories(uniqueCategories); // Przechowaj unikalne kategorie w stanie
+    //     } catch (err) {
+    //         setError('Nie udało się załadować projektów.');
+    //     }
+    // };
 
 
 
@@ -105,27 +105,27 @@ function AddProject() {
                         </div>
                         <div className="form_textfield_group">
                             <label>Category: </label>
-                            {/*<input*/}
-                            {/*    type="text"*/}
-                            {/*    value={category}*/}
-                            {/*    onChange={(e) => setCategory(e.target.value)}*/}
-                            {/*    placeholder="category"*/}
-                            {/*    required*/}
-                            {/*/>*/}
-                            <select
+                            <input
+                                type="text"
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
+                                placeholder="category"
                                 required
-                            >
-                                <option value="" disabled>
-                                    Select a category
-                                </option>
-                                {categories.map((cat, index) => (
-                                    <option key={index} value={cat}>
-                                        {cat}
-                                    </option>
-                                ))}
-                            </select>
+                            />
+                            {/*<select*/}
+                            {/*    value={category}*/}
+                            {/*    onChange={(e) => setCategory(e.target.value)}*/}
+                            {/*    required*/}
+                            {/*>*/}
+                            {/*    <option value="" disabled>*/}
+                            {/*        Select a category*/}
+                            {/*    </option>*/}
+                            {/*    {categories.map((cat, index) => (*/}
+                            {/*        <option key={index} value={cat}>*/}
+                            {/*            {cat}*/}
+                            {/*        </option>*/}
+                            {/*    ))}*/}
+                            {/*</select>*/}
                         </div>
                         <div className="form_textfield_group">
                             <label>Description: </label>
