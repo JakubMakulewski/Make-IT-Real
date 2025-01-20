@@ -1,4 +1,4 @@
-package com.example.makeitreal.Controller.Task;
+package com.example.makeitreal.Controller;
 
 import com.example.makeitreal.Service.TaskService;
 import com.example.makeitreal.payload.TaskDto;

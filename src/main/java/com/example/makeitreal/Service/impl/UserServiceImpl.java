@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
         usersDto.setId(user.getId());
         usersDto.setName(user.getName());
         usersDto.setEmail(user.getEmail());
+        usersDto.setUsername(user.getUsername());
         usersDto.setGroups(user.getGroups().stream().map(this::mapGroupToDto).toList());
         return usersDto;
     }
