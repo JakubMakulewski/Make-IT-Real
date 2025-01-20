@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Tasks from "./Tasks";
 import axios from "axios";
 
@@ -88,9 +88,11 @@ const CardItemMore = () => {
                     {/*)}*/}
 
                     <Tasks/>
-                    <button className="join_project_btn">
-                        {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
-                    </button>
+                    <Link to={`/join_project/${id}/`}>
+                        <button className="join_project_btn">
+                            {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
+                        </button>
+                    </Link>
                 </div>
                 // }
             )}

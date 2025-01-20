@@ -100,14 +100,16 @@
 .card_items_account {
 }
 
+
 .cards__items_account {
     /* margin-bottom: 24px; */
     /* display: flex;
     flex-wrap: wrap; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);  /* 3 kolumny o równej szerokości */
-    /*gap: 20px;  !* Odstęp między blokami *!*/
-    /*padding: 20px;  !* Padding wewnętrzny sekcji *!*/
+    gap: 20px;  /* Odstęp między blokami */
+    padding: 20px;  /* Padding wewnętrzny sekcji */
+
 }
 
 .cards__item__pic-wrap_acc {
@@ -156,6 +158,37 @@
     /*filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.55));*/
     border-radius: 10px;
     padding: 20px 30px 30px;
+}
+
+
+.cards__wrapper_acc {
+    position: relative;
+    margin: 1em 0 2em;
+}
+
+.project_card_acc {
+    position: relative;
+    width: 100%;
+    /*padding-top: 67%;*/
+    /*overflow: hidden;*/
+
+    /*padding: 20px 30px 30px;*/
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .cards__items_account {
+        grid-template-columns: repeat(2, 1fr);  /* 2 kolumny na ekranach poniżej 1024px */
+    }
+
+
+}
+
+
+@media only screen and (max-width: 768px) {
+    .cards__items_account {
+        display: block;
+    }
 }
 
 /*.sign_up {*/
