@@ -61,7 +61,7 @@ const CardItemMore = () => {
 
                     <figure className="cards__item__pic-wrap" data-category={project.category}>
                         <img
-                            src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
+                            src={require("../images/img-" + randomNumberInRange(13, 17) + ".jpg")}
                             // alt="Travel Image"
                             className="cards__item__img"
                         />
@@ -88,11 +88,14 @@ const CardItemMore = () => {
                     {/*)}*/}
 
                     <Tasks/>
-                    <Link to={`/join_project/${id}/`}>
+                    <Link to={`/join_project/${id}`} className="join_project_btn_wrapper">
                         <button className="join_project_btn">
                             {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
                         </button>
                     </Link>
+                    {/*<button className="join_project_btn">*/}
+                    {/*    {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}*/}
+                    {/*</button>*/}
                 </div>
                 // }
             )}

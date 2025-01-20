@@ -11,7 +11,6 @@ function AddUserToGroupComponent() {
     const { id } = useParams();  // Pobierz ID z URL
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState('');
     const [users, setUsers] = useState([]);
     const [project, setProject] = useState('');
     const [groups, setGroups] = useState([]);
@@ -19,31 +18,12 @@ function AddUserToGroupComponent() {
 
     useEffect(async () => {
         if(!loaded) {
-            await fetchUserData();
             await fetchUsersData();
             await fetchProjectById();
             await fetchGroups();
             setLoaded(true);
         }
-    }, [user, project, groups])
-
-    async function fetchUserData() {
-        if (!token) {
-            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
-            return;
-        }
-        try {
-            const response = await axios.get(`http://localhost:5051/users/${userId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Dodanie tokena JWT do nagłówka
-                },
-            });
-            setUser(response.data);
-            console.log("fetching user data");
-        } catch (err) {
-            setError('Nie udało się załadować danych użytkownika.');
-        }
-    }
+    }, [project, groups])
 
     async function fetchUsersData() {
         if (!token) {
