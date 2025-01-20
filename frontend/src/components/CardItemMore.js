@@ -117,6 +117,29 @@ const CardItemMore = () => {
                             <p>Brak grup do wyświetlenia.</p>
                         )}
                     </div>
+                    {/*MEMBER COUNT - funkcja do rozszerzenia aplikacji*/}
+                    {/* <div className="member_progress_bar">
+                    <i className="fas fa-users"></i>
+                    <progress value={project.participants} max={project.maxParticipants}></progress>
+                    <span>{project.participants}/{project.maxParticipants}</span>
+                </div> */}
+
+
+                    {/*{project.isPrivate ? (*/}
+                    {/*    <button disabled style={{cursor: 'not-allowed'}}>🔒 Prywatny</button>*/}
+                    {/*) : (*/}
+                    {/*    <button>Dołącz</button>*/}
+                    {/*)}*/}
+
+                    <Tasks/>
+                    <Link to={`/join_project/${id}`} className="join_project_btn_wrapper">
+                        <button className="join_project_btn">
+                            {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
+                        </button>
+                    </Link>
+                    {/*<button className="join_project_btn">*/}
+                    {/*    {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}*/}
+                    {/*</button>*/}
                 </div>
             )}
         </div>

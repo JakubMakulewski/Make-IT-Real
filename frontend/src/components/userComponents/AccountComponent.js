@@ -9,7 +9,7 @@ const AccountComponent = () => {
     const [email, setEmail] = useState('');
     const [user, setUser] = useState('');
     const [error, setError] = useState(''); // Stan błędu
-    const [groups, setGroups] = useState([]);
+    let groups = [];
     const [projects, setProjects] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const token = localStorage.getItem('jwtToken');
@@ -37,6 +37,7 @@ const AccountComponent = () => {
             });
             setEmail(localStorage.getItem('userEmail'));
             setUser(response.data.content.find(element => element.email === email));
+            localStorage.setItem('userId', user.id);
         } catch (err) {
             setError('Nie udało się załadować danych użytkownika.');
         }
@@ -56,9 +57,17 @@ const AccountComponent = () => {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            setGroups(response.data.content.filter(element => (element.users.find(x => x.id === user.id) !== undefined)));
+            // setGroups(response.data.content.filter(element => element.users.find(x => x === user.id) !== undefined));
+            console.log("FOUND");
+            console.log(response.data.content.filter(element => element.users.find(x => x === user.id) !== undefined));
+            const temp = response.data.content.filter(element => element.users.find(x => x === user.id) !== undefined);
+            groups = temp;
+            console.log(temp);
+            console.log(groups);
+            console.log(user.id);
         } catch(err) {
             setError('Nie udało się załadować grup.');
+            console.log(err);
         }
     }
 
@@ -87,6 +96,7 @@ const AccountComponent = () => {
         try {
             localStorage.removeItem('jwtToken');
             localStorage.removeItem('userEmail');
+            localStorage.removeItem('userId');
             setLoggedOut(true);
         }
         catch (err) {
@@ -119,7 +129,8 @@ const AccountComponent = () => {
                     }
                 </div>
                 {groups && projects &&
-                    <div className="card_items_account">
+                    <div className="cards__wrapper_acc">
+                        <h1>Your projects</h1>
                         <ul className="cards__items_account">
                             {projects.map((project) => (
                                 <CardAccount key={project.id}

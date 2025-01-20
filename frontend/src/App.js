@@ -16,6 +16,7 @@ import AddProject from "./components/AddProject";
 import JoinProject from "./components/JoinProject";
 import Kanban from "./components/Kanban/Kanban";
 import DragAndDropExample from "./drag-and-drop";
+import AddUserToGroupComponent from "./components/userComponents/AddUserToGroupComponent";
 
 
 const ProjectPage = ({ match }) => (
@@ -32,8 +33,8 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/services" component={Services} />
+            <Route path="/" exact component={Home} />
+            <Route path="/services" component={Services} />
           <Route path="/products" component={Products} />
           <Route path="/sign-up" component={SignUp} />
           {/* <Route path="/project-details" component={ProjectDetails} /> */}
@@ -45,10 +46,9 @@ function App() {
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
           <Route path="/account" component={AccountComponent} />
+            <Route path="/join_project/:id" component={AddUserToGroupComponent} />
 
           <Route path="/add-project" component={AddProject} />
-
-
             {/*
           do poprawy jeszcze to bedzie
           <Route path="/join" component={JoinProject} />

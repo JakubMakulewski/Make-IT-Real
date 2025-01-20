@@ -301,6 +301,10 @@ h1 {
 
 }
 
+.join_project_btn_wrapper {
+    display: contents;
+}
+
 .join_project_btn {
     /*margin: 1em;*/
 
@@ -313,7 +317,6 @@ h1 {
     border: 3px solid #1b1919;
     border-radius: 2px;
     cursor: pointer;
-
     width: 25%;
     /*height: 2em;*/
     text-align: center;
