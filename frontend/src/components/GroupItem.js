@@ -69,17 +69,19 @@ const GroupItem = ({ groupId, projectId }) => {
     };
 
     const fetchAssignedUsers = async () => {
-        if (!groupId) {
-            console.error("Brak groupId, nie można pobrać użytkowników.");
+        if (!groupId || !projectId) {
+            console.error("Brak groupId lub projectId, nie można pobrać użytkowników.");
             return;
         }
 
         const token = localStorage.getItem("jwtToken");
         try {
-            const groupUserResponse = await axios.get("http://localhost:5051/groups-users", {
+            // Pobierz grupy przypisane do projektu
+            const groupsResponse = await axios.get(`http://localhost:5051/projects/${projectId}/groups`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
+            // Pobierz listę użytkowników
             const usersResponse = await axios.get("http://localhost:5051/users", {
                 headers: { Authorization: `Bearer ${token}` },
                 params: {
@@ -90,24 +92,23 @@ const GroupItem = ({ groupId, projectId }) => {
                 },
             });
 
-            if (groupUserResponse.data && usersResponse.data.content) {
-                const groupUsers = groupUserResponse.data.filter(
-                    (record) => Number(record.GROUP_ID) === Number(groupId)
+            if (groupsResponse.data && usersResponse.data.content) {
+                // Pobierz grupę z odpowiadającym `groupId`
+                const currentGroup = groupsResponse.data.find((group) => group.id === groupId);
+
+                if (!currentGroup) {
+                    console.error(`Grupa o ID ${groupId} nie istnieje.`);
+                    return;
+                }
+
+                // Filtruj użytkowników przypisanych do tej grupy
+                const assignedUsers = usersResponse.data.content.filter((user) =>
+                    currentGroup.assignedUsers.includes(user.id) // Zakładamy, że backend zwraca listę `assignedUsers`
                 );
-
-                console.log("Przypisania dla groupId:", groupId, groupUsers);
-
-                const assignedUsers = groupUsers
-                    .map((record) =>
-                        usersResponse.data.content.find((user) => user.id === Number(record.USER_ID))
-                    )
-                    .filter(Boolean);
-
-                console.log("Użytkownicy przypisani do groupId:", groupId, assignedUsers);
 
                 setAssignedUsers(assignedUsers);
             } else {
-                console.error("Brak danych użytkowników lub przypisań.");
+                console.error("Brak danych grup lub użytkowników.");
             }
         } catch (error) {
             console.error("Błąd podczas pobierania przypisanych użytkowników:", error);
@@ -139,19 +140,12 @@ const GroupItem = ({ groupId, projectId }) => {
                 return;
             }
 
-            // Losowe przypisanie np. 3 użytkowników
+            // Losowe przypisanie użytkowników
             const shuffled = [...allUsers].sort(() => 0.5 - Math.random());
             const selectedUsers = shuffled.slice(0, 3);
             setAssignedUsers(selectedUsers);
 
-            // Wyślij przypisanych użytkowników do API grupy
-            await axios.post(
-                `http://localhost:5051/groups/${groupId}/assign-users`,
-                { users: selectedUsers },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-
-            console.log("Użytkownicy przypisani pomyślnie");
+            console.log("Użytkownicy przypisani lokalnie:", selectedUsers);
         } catch (error) {
             console.error("Błąd podczas przypisywania użytkowników:", error);
         }
@@ -169,7 +163,7 @@ const GroupItem = ({ groupId, projectId }) => {
                         Przypisani użytkownicy
                     </button>
 
-                    {assignedUsers.length > 0 && (
+                    {assignedUsers.length > 0 ? (
                         <div className="assigned-users">
                             <h3>Użytkownicy przypisani do grupy:</h3>
                             <div
@@ -222,6 +216,8 @@ const GroupItem = ({ groupId, projectId }) => {
                                 ))}
                             </div>
                         </div>
+                    ) : (
+                        <p>Brak przypisanych użytkowników.</p>
                     )}
                 </div>
             )}
