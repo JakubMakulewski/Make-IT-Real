@@ -112,3 +112,44 @@ ul {
     padding: 0;
     margin: 0;
 }
+
+.red_button {
+    /*margin: 1em;*/
+    padding: 8px 20px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    /*margin: 0 1em;*/
+    border: 3px solid #1b1919;
+    border-radius: 2px;
+    cursor: pointer;
+
+    width: 7.5em;
+    /*height: 2em;*/
+    text-align: center;
+    text-decoration: none;
+    color: #ff0000;
+}
+
+.red_button:hover {
+    background: #1b1919;
+    color: #ff0000;
+    transition: all 0.3s ease-out;
+}
+.red_button:active {
+    background: #fff;
+    color: #1b1919;
+    transition: none;
+
+}
+
+.red_button.disabled_button {
+    background-color: #ccc; /* Szary kolor przygaśnięcia */
+    color: #666; /* Zmiana koloru tekstu */
+    cursor: not-allowed; /* Ikona "zakazu" */
+    border-color: #ccc;
+}
+
+.red_button.disabled_button:hover {
+    background-color: #ccc; /* Brak efektu hover */
+    color: #666;
+}

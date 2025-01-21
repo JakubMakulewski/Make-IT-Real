@@ -5,7 +5,6 @@ import {useParams} from "react-router-dom";
 import "./AddUserToGroupComponent.css";
 import "./../Cards.css";
 
-
 function AddUserToGroupComponent() {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('jwtToken');
@@ -129,6 +128,42 @@ function AddUserToGroupComponent() {
         }
     };
 
+    const handleRemoveUserFromGroup = (groupId) => async (e) => {
+        e.preventDefault();
+        if (!token) {
+            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
+            return;
+        }
+        console.log("Removing user from GroupId: " + groupId);
+        const group = groups.find(element => element.id === groupId);
+        group.users = group.users.filter(user => user !== parseInt(userId)); // Usuń użytkownika z grupy
+        try {
+            const response = await axios.put(
+                `http://localhost:5051/groups/${groupId}`,
+                {
+                    id: group.id,
+                    name: group.name,
+                    users: group.users,
+                    projectId: id,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setError('');
+            setSuccess('You left the group!');
+            console.log('Usunięto użytkownika z grupy!:', response.data);
+            await fetchGroups();
+        } catch (err) {
+            console.log(err);
+            setSuccess('');
+            setError('Nie udało się opuścić grupy.');
+        }
+    };
+
+
     return (
         <div className="account_container">
             {groups.length > 0 ? (
@@ -160,10 +195,11 @@ function AddUserToGroupComponent() {
                                         </div>
                                         <input
                                             type="submit"
-                                            value={isUserInGroup ? "🔒" : "Join!"}
-                                            className={`black_button ${isUserInGroup ? "disabled_button" : ""}`}
-                                            disabled={isUserInGroup} // Blokowanie przycisku
+                                            value={isUserInGroup ? "Leave?" : "Join!"}
+                                            className={isUserInGroup ? "red_button" : "black_button"}
+                                            onClick={isUserInGroup ? handleRemoveUserFromGroup(group.id) : handleAddUserToGroup(group.id)}
                                         />
+
                                     </li>
                                 </form>
                             );
