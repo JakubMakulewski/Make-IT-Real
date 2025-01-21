@@ -8,6 +8,12 @@
     outline: none;
     border: none;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Dodano efekt przejścia */
+}
+
+.btn:hover {
+    transform: translateY(-3px); /* Lekkie unoszenie */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Dodano cień */
 }
 
 .btn--primary {
@@ -34,7 +40,7 @@
     font-size: 20px;
 }
 
-.btn--medium:hover, 
+.btn--medium:hover,
 .btn--large:hover {
     background: #fff;
     color: #242424;
