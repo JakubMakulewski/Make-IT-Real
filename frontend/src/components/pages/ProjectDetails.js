@@ -12,7 +12,7 @@ function ProjectDetails() {
         <>
             <CardItemMore />
             {/* <Footer /> */}
-            <JoinProject />
+            {/*<JoinProject />*/}
 
         </>
     );

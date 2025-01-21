@@ -61,7 +61,7 @@ function Navbar() {
                                     className="nav-links"
                                     onClick={closeMobileMenu}
                                 >
-                                    My projects
+                                    Projects
                                 </Link>
                             </li>
                             <li className="nav-item">
