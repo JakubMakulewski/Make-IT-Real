@@ -4,9 +4,9 @@ import Footer from './components/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/pages/Home';
-import Index from './components/pages/Index';
 import Services from './components/pages/Services';
 import Products from './components/pages/Products';
+import Projects from './components/pages/Projects';
 import SignUp from './components/pages/SignUp';
 import ProjectDetails from "./components/pages/ProjectDetails";
 import LoginComponent from "./components/userComponents/LoginComponent";
@@ -35,9 +35,9 @@ function App() {
         <Navbar />
         <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/index" exact component={Index} />
             <Route path="/services" component={Services} />
           <Route path="/products" component={Products} />
+          <Route path="/projects" component={Projects} />
           <Route path="/sign-up" component={SignUp} />
           {/* <Route path="/project-details" component={ProjectDetails} /> */}
 
