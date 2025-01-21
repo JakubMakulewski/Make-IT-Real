@@ -6,7 +6,7 @@ import './HeroSection.css';
 function HeroSection() {
     return (
         <div className="hero-container">
-            <video src="./videos/video-1.mp4" autoPlay look muted />
+            <video src="./videos/video-1.mp4" autoPlay muted loop />
             <h1>Welcome to Make it Real</h1>
             <p>Dive into the world of project management. Collaborate, create, and conquer your goals with ease.</p>
             <div className="hero-btns">
