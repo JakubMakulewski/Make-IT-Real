@@ -110,7 +110,7 @@ function Cards() {
                                 //   status="in progress"
                                   label={project.category}
                                 //   path="/project-details"
-                                  path={`/projects/${project.id}/tasks`}
+                                  path={`/project/${project.id}/tasks`}
                         >
                         </CardItem>
 

@@ -41,10 +41,10 @@ function App() {
           <Route path="/sign-up" component={SignUp} />
           {/* <Route path="/project-details" component={ProjectDetails} /> */}
 
-          <Route path="/projects/:id/tasks" component={ProjectDetails} />
+          <Route path="/project/:id/tasks" component={ProjectDetails} />
 
 
-          <Route path="/projects" component={ProjectList} />
+          <Route path="/project" component={ProjectList} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
           <Route path="/account" component={AccountComponent} />
