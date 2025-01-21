@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Tasks from "./Tasks";
 import axios from "axios";
 import GroupItem from './GroupItem';
@@ -99,24 +99,16 @@ const CardItemMore = () => {
 
                     <p className="cards__item__text__description">{project.description}</p>
 
-                    {/* Sekcja zadań */}
-                    <Tasks />
-
-                    {/* Przycisk dołączenia */}
-                    <button className="join_project_btn">
-                        {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
-                    </button>
-
-                    {/* Komponent GroupItem */}
-                    <div className="group_item_wrapper">
-                        {projectGroups.length > 0 ? (
-                            projectGroups.map((group) => (
-                                <GroupItem key={group.id} groupId={group.id} projectId={id} />
-                            ))
-                        ) : (
-                            <p>Brak grup do wyświetlenia.</p>
-                        )}
-                    </div>
+                    {/*/!* Komponent GroupItem *!/*/}
+                    {/*<div className="group_item_wrapper">*/}
+                    {/*    {projectGroups.length > 0 ? (*/}
+                    {/*        projectGroups.map((group) => (*/}
+                    {/*            <GroupItem key={group.id} groupId={group.id} projectId={id} />*/}
+                    {/*        ))*/}
+                    {/*    ) : (*/}
+                    {/*        <p>Brak grup do wyświetlenia.</p>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
                     {/*MEMBER COUNT - funkcja do rozszerzenia aplikacji*/}
                     {/* <div className="member_progress_bar">
                     <i className="fas fa-users"></i>

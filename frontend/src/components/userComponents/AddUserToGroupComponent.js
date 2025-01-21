@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Redirect from "react-router-dom/es/Redirect";
 import {useParams} from "react-router-dom";
+import "./AddUserToGroupComponent.css";
+import "./../Cards.css";
 
 
 function AddUserToGroupComponent() {
@@ -96,6 +98,7 @@ function AddUserToGroupComponent() {
             setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
             return;
         }
+        console.log("GroupId: " + groupId);
         const group = groups.find(element => element.id === groupId);
         if(group.users.indexOf(parseInt(userId)) === -1) {
             group.users.push(userId);
@@ -127,38 +130,52 @@ function AddUserToGroupComponent() {
     };
 
     return (
-        <div>
-            {project && groups &&
-                <ul>
-                    {groups.map((group) => (
-                        <form onSubmit={handleAddUserToGroup(group.id)} key={group.id}>
-                            <li key={group.id}>
-                                <p>{group.name}</p>
-                                <ul>
-                                    {group.users.map((user) => (
-                                        <li key={user}>
-                                            {getUser(user) && <p>{getUser(user).name}: {getUser(user).username}</p>}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <input type="submit" value="Join this group!"/>
-                            </li>
-                        </form>
-                    ))}
-                </ul>
-            }
-            {users &&
-                <ul>
-                    {users.map((ele) => (
-                        <li key={ele.id}>
-                            <p>{ele.id}{ele.username}</p>
-                        </li>
-                    ))}
-                </ul>
-            }
-            {error && <p style={{color: 'red'}}>{error}</p>}
+        <div className="account_container">
+            {groups.length > 0 ? (
+                <div className="cards__wrapper_acc">
+                    <h1>Your Groups</h1>
+                    <ul className="cards__items_account">
+                        {groups.map((group) => {
+                            const isUserInGroup = group.users.includes(parseInt(userId));
+                            return (
+                                <form onSubmit={handleAddUserToGroup(group.id)} className="join__form" key={group.id}>
+                                    <li className="group_card">
+                                        <h3 className="group__name">{group.name}</h3>
+                                        <div className="group__users">
+                                            {group.users.map((user) => (
+                                                <div key={user} className="user__card">
+                                                    <img
+                                                        src={require(`../../images/img-${Math.floor(Math.random() * (21 - 18 + 1) + 18)}.jpg`)}
+                                                        alt="Avatar"
+                                                        className="user__avatar"
+                                                    />
+                                                    {getUser(user) && (
+                                                        <>
+                                                            <p className="user__name">{getUser(user).name}</p>
+                                                            <p className="user__username">{getUser(user).username}</p>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <input
+                                            type="submit"
+                                            value={isUserInGroup ? "🔒" : "Join!"}
+                                            className={`black_button ${isUserInGroup ? "disabled_button" : ""}`}
+                                            disabled={isUserInGroup} // Blokowanie przycisku
+                                        />
+                                    </li>
+                                </form>
+                            );
+                        })}
+                    </ul>
+                </div>
+            ) : (
+                <p className="no__groups">Brak grup do wyświetlenia.</p>
+            )}
+            {error && <p className="error__message">{error}</p>}
         </div>
-    )
+    );
 }
 
 export default AddUserToGroupComponent;

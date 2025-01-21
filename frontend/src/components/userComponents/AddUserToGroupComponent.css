@@ -1,0 +1,114 @@
+.account_container {
+    padding: 1rem;
+    justify-content: center;
+}
+
+.project__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.project__header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cards__wrapper_acc {
+    position: relative;
+    margin: 2rem auto;
+    max-width: 1300px;
+    box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);
+    border-radius: 10px;
+    padding: 20px 30px 30px;
+    background-color: #f5f5f5;
+}
+
+.cards__items_account {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Dostosowuje liczbę kolumn */
+    gap: 20px;
+    padding: 20px;
+}
+
+.group_card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 15px;
+    text-align: center;
+}
+
+.group_card:hover {
+    transform: translateY(-5px);
+    /*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);*/
+}
+
+.group__name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.group__users {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Dopasowanie użytkowników */
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.user__card {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user__card:hover {
+    transform: scale(1.1);
+    /*box-shadow: 0 3px 10px rgba(56, 125, 255, 0.3);*/
+}
+
+.user__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.user__name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user__username {
+    font-size: 12px;
+    color: #666;
+}
+
+.no__groups {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+}
+
+.error__message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none; /* Usuwa kropki z listy */
+    padding: 0; /* Usuwa wewnętrzne odstępy */
+    margin: 0; /* Usuwa zewnętrzne odstępy */
+}
+
+.group_card ul {
+    list-style: none; /* Zapobiega dodaniu kropek w elementach wewnątrz grup */
+    padding: 0;
+    margin: 0;
+}

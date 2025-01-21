@@ -240,8 +240,17 @@ h1 {
 
 }
 
+.black_button.disabled_button {
+    background-color: #ccc; /* Szary kolor przygaśnięcia */
+    color: #666; /* Zmiana koloru tekstu */
+    cursor: not-allowed; /* Ikona "zakazu" */
+    border-color: #ccc;
+}
 
-
+.black_button.disabled_button:hover {
+    background-color: #ccc; /* Brak efektu hover */
+    color: #666;
+}
 
 .project_card {
     position: relative;

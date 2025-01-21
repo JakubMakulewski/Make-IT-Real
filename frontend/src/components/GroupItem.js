@@ -152,16 +152,13 @@ const GroupItem = ({ groupId, projectId }) => {
     };
 
     return (
-        <div className="group__item__wrapper">
+        <div className="group__container" style={{ marginBottom: "30px", padding: "20px", border: "1px solid #ccc", borderRadius: "10px" }}>
             {loading && <p>Ładowanie...</p>}
-            {error && !projectGroups.length && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             {!loading && !error && group && (
                 <div className="group__item">
-                    <h2>{group.name}</h2>
-                    <p>{group.description}</p>
-                    <button className="assign_users_btn" onClick={handleAssignUsers}>
-                        Przypisani użytkownicy
-                    </button>
+                    <h2 style={{ marginBottom: "10px", color: "#333" }}>{group.name}</h2>
+                    <p style={{ marginBottom: "20px", color: "#555" }}>{group.description}</p>
 
                     {assignedUsers.length > 0 ? (
                         <div className="assigned-users">
@@ -217,7 +214,7 @@ const GroupItem = ({ groupId, projectId }) => {
                             </div>
                         </div>
                     ) : (
-                        <p>Brak przypisanych użytkowników.</p>
+                        <p style={{ marginTop: "20px" }}>Brak przypisanych użytkowników.</p>
                     )}
                 </div>
             )}
