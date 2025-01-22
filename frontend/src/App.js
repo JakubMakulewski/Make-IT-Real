@@ -15,7 +15,11 @@ import AccountComponent from "./components/userComponents/AccountComponent";
 import AddProject from "./components/AddProject";
 import JoinProject from "./components/JoinProject";
 import Kanban from "./components/Kanban/Kanban";
+<<<<<<< Updated upstream
 import DragAndDropExample from "./drag-and-drop";
+=======
+import AddUserToGroupComponent from "./components/userComponents/AddUserToGroupComponent";
+>>>>>>> Stashed changes
 
 
 const ProjectPage = ({ match }) => (
@@ -47,8 +51,12 @@ function App() {
           <Route path="/account" component={AccountComponent} />
 
           <Route path="/add-project" component={AddProject} />
+<<<<<<< Updated upstream
 
 
+=======
+            <Route path="Kanban" component={Kanban} />
+>>>>>>> Stashed changes
             {/*
           do poprawy jeszcze to bedzie
           <Route path="/join" component={JoinProject} />

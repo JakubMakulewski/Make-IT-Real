@@ -2,6 +2,11 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import Tasks from "./Tasks";
 import axios from "axios";
+<<<<<<< Updated upstream
+=======
+import GroupItem from './GroupItem';
+import Kanban from "./Kanban/Kanban";
+>>>>>>> Stashed changes
 
 const CardItemMore = () => {
     const [project, setProject] = useState(null); // Stan na pojedynczy projekt
@@ -98,6 +103,7 @@ const CardItemMore = () => {
 
 
     );
+    <Kanban/>
 };
 
 export default CardItemMore;

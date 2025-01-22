@@ -1,12 +1,10 @@
 .task-card {
-    background-color: #ffffff; /* Tło karty */
-    border: 1px solid #dcdcdc; /* Obwódka */
-    border-radius: 8px; /* Zaokrąglone rogi */
-    padding: 12px; /* Wewnętrzny odstęp */
-    margin-bottom: 12px; /* Odstęp między kartami */
-    cursor: grab; /* Wskaźnik myszy na uchwycenie */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
-    transition: box-shadow 0.3s ease, transform 0.2s ease; /* Płynne animacje */
+    margin: 2rem 0;
+    padding: 1rem;
+    /*border: 1px solid #1b1919;*/
+    border-radius: 20px;
+    /*box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);*/
+    box-shadow: 0 2px 5px 2px rgb(0 0 0 / 40%);
 }
 
 .task-card:active {
