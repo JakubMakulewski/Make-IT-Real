@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
-import "./LoginComponent.css"
 import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import "./LoginComponent.css";
 
 const LoginComponent = () => {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -34,13 +34,19 @@ const LoginComponent = () => {
         }
     };
 
+
+    const randomNumberInRange = (min, max) => {
+        return Math.floor(Math.random()
+            * (max - min + 1)) + min;
+    };
+
     return (
         <div className="add_project">
             {loggedIn &&
                 <Redirect to={"/account"}/>
             }
             {!loggedIn &&
-                <div className="notLoggedIn">
+                <div>
                     <h1>Log in</h1>
                     <div className="add_project_container">
                         <form onSubmit={handleLogin}>
@@ -68,20 +74,20 @@ const LoginComponent = () => {
                                 <button type="submit">Log in</button>
                             </div>
                         </form>
-                        {token && <Redirect to="/"/>}
+                        {token && <Redirect to="/account"/>}
                         {error && <p style={{color: 'red'}}>{error}</p>}
                         <div className="no_account">
                             <h2>No account?</h2>
-                            <Link to="/register">
+                            <Link to="/register" className="form_button_center">
                                 <button>Sign up!</button>
                             </Link>
                             {/*Don't have an account? <Link to="/register" className="sign_up">Sign up!</Link>*/}
                         </div>
                     </div>
-                    </div>
-                    }
                 </div>
-                );
-            };
+            }
+        </div>
+    );
+};
 
-            export default LoginComponent;
+export default LoginComponent;

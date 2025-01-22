@@ -240,8 +240,17 @@ h1 {
 
 }
 
+.black_button.disabled_button {
+    background-color: #ccc; /* Szary kolor przygaśnięcia */
+    color: #666; /* Zmiana koloru tekstu */
+    cursor: not-allowed; /* Ikona "zakazu" */
+    border-color: #ccc;
+}
 
-
+.black_button.disabled_button:hover {
+    background-color: #ccc; /* Brak efektu hover */
+    color: #666;
+}
 
 .project_card {
     position: relative;
@@ -301,6 +310,10 @@ h1 {
 
 }
 
+.join_project_btn_wrapper {
+    display: contents;
+}
+
 .join_project_btn {
     /*margin: 1em;*/
 
@@ -313,7 +326,6 @@ h1 {
     border: 3px solid #1b1919;
     border-radius: 2px;
     cursor: pointer;
-
     width: 25%;
     /*height: 2em;*/
     text-align: center;

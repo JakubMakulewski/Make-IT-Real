@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Tasks from "./Tasks";
 import axios from "axios";
-<<<<<<< Updated upstream
-=======
 import GroupItem from './GroupItem';
-import Kanban from "./Kanban/Kanban";
->>>>>>> Stashed changes
 
 const CardItemMore = () => {
     const [project, setProject] = useState(null); // Stan na pojedynczy projekt
     const [loading, setLoading] = useState(true); // Stan ładowania
     const [error, setError] = useState(''); // Stan błędu
+
+    const [projectGroups, setProjectGroups] = useState([]); // Stan grup projektu
 
 
 
@@ -24,7 +22,10 @@ const CardItemMore = () => {
 
 
     useEffect(() => {
-        fetchProjectById();
+        if (id) {
+            fetchProjectById();
+            fetchProjectGroups(id); // Pobierz grupy projektu
+        }
     }, [id]); // Pobierz projekt przy zmianie ID
 
     const fetchProjectById = async () => {
@@ -50,6 +51,31 @@ const CardItemMore = () => {
         }
     };
 
+    const fetchProjectGroups = async (projectId) => {
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            setError('Brak tokenu uwierzytelniającego. Zaloguj się ponownie.');
+            return;
+        }
+
+        try {
+            const response = await axios.get(`http://localhost:5051/projects/${projectId}/groups`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (response.data && response.data.length > 0) {
+                setProjectGroups(response.data); // Przypisz grupy do stanu
+            } else {
+                setError('Brak grup dla tego projektu.');
+            }
+        } catch (err) {
+            setError('Nie udało się załadować grup projektu.');
+            console.error('Błąd podczas pobierania grup projektu:', err);
+        }
+    };
+
     const randomNumberInRange = (min, max) => {
         return Math.floor(Math.random()
             * (max - min + 1)) + min;
@@ -58,26 +84,31 @@ const CardItemMore = () => {
     return (
         <div className="card__item__more__wrapper">
             {loading && <p>Ładowanie...</p>}
-            {error && <p style={{color: 'red'}}>{error}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             {!loading && !error && project && (
-
                 <div className="card__item__more">
                     <h2>{project.name}</h2>
 
                     <figure className="cards__item__pic-wrap" data-category={project.category}>
                         <img
-                            src={require("../images/img-"+randomNumberInRange(13, 17)+".jpg")}
-                            // alt="Travel Image"
+                            src={require(`../images/img-${randomNumberInRange(13, 17)}.jpg`)}
+                            alt={`${project.name}`}
                             className="cards__item__img"
                         />
                     </figure>
 
-                    {/*STATUS - funkcja do rozszerzenia aplikacji*/}
-                    {/* <div className="cards__item__status">
-                    <div className="status_icon">{project.status}</div>
-                </div> */}
                     <p className="cards__item__text__description">{project.description}</p>
 
+                    {/*/!* Komponent GroupItem *!/*/}
+                    {/*<div className="group_item_wrapper">*/}
+                    {/*    {projectGroups.length > 0 ? (*/}
+                    {/*        projectGroups.map((group) => (*/}
+                    {/*            <GroupItem key={group.id} groupId={group.id} projectId={id} />*/}
+                    {/*        ))*/}
+                    {/*    ) : (*/}
+                    {/*        <p>Brak grup do wyświetlenia.</p>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
                     {/*MEMBER COUNT - funkcja do rozszerzenia aplikacji*/}
                     {/* <div className="member_progress_bar">
                     <i className="fas fa-users"></i>
@@ -93,17 +124,18 @@ const CardItemMore = () => {
                     {/*)}*/}
 
                     <Tasks/>
-                    <button className="join_project_btn">
-                        {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
-                    </button>
+                    <Link to={`/join_project/${id}`} className="join_project_btn_wrapper">
+                        <button className="join_project_btn">
+                            {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}
+                        </button>
+                    </Link>
+                    {/*<button className="join_project_btn">*/}
+                    {/*    {project.isPrivate ? <i className="fas fa-lock"></i> : "Join"}*/}
+                    {/*</button>*/}
                 </div>
-                // }
             )}
         </div>
-
-
     );
-    <Kanban/>
 };
 
 export default CardItemMore;

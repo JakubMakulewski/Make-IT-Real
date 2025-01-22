@@ -49,7 +49,7 @@ function CardItem(props) {
                                 // id={props.key}
                                 // text={props.text}
                             >
-                                {isPrivate ? <i className="fas fa-lock"></i> : "Join"}
+                                {isPrivate ? <i className="fas fa-lock"></i> : "Details"}
                             </Link>
                         </div>
                     </div>

@@ -45,6 +45,11 @@ video {
     margin-left: 4px;
 }
 
+.hero-container > p {
+    font-size: 30px;
+    text-align: center;
+}
+
 @media screen and (max-width: 960px) {
     .hero-container > h1 {
         font-size: 70px;
@@ -58,10 +63,6 @@ video {
         margin-top: -100px;
     }
 
-    .hero-container > p {
-        font-size: 30px;
-    }
-
     .btn-mobile {
         display: block;
         text-decoration: none;
@@ -70,4 +71,73 @@ video {
     .btn {
         width: 100%;
     }
+}
+
+.black_button {
+    padding: 10px 25px; /* Większe przyciski */
+    font-size: 1.3rem; /* Większy tekst */
+    background-color: transparent;
+    border: 3px solid #1b1919;
+    border-radius: 5px; /* Większe zaokrąglenie */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #1b1919;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtelny cień */
+    transition: all 0.3s ease;
+}
+
+.black_button:hover {
+    background: #1b1919;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Intensywniejszy cień na hover */
+    transform: translateY(-3px); /* Unoszenie przycisku */
+}
+
+.black_button:active {
+    background: #fff;
+    color: #1b1919;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtelniejszy cień na kliknięcie */
+    transform: translateY(0); /* Powrót do stanu początkowego */
+}
+
+.red_button {
+    padding: 10px 25px; /* Większe przyciski */
+    font-size: 1.3rem;
+    background-color: transparent;
+    border: 3px solid #ff0000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #ff0000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtelny cień */
+    transition: all 0.3s ease;
+}
+
+.red_button:hover {
+    background: #ff0000;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Intensywniejszy cień na hover */
+    transform: translateY(-3px); /* Unoszenie przycisku */
+}
+
+.red_button:active {
+    background: #fff;
+    color: #ff0000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtelniejszy cień na kliknięcie */
+    transform: translateY(0); /* Powrót do stanu początkowego */
+}
+
+.disabled_button {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    border-color: #ccc;
+    box-shadow: none; /* Bez cienia */
+}
+
+.disabled_button:hover {
+    background-color: #ccc; /* Brak efektu hover */
+    color: #666;
 }

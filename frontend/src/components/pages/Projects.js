@@ -4,14 +4,12 @@ import HeroSection from '../TRASH/HeroSection';
 import Cards from '../Cards';
 import Footer from '../Footer';
 
-function Home() {
+function Projects() {
     return (
         <>
-            <HeroSection />
-            {/*<Cards />*/}
-            {/*<Footer />*/}
+            <Cards />
         </>
     );
 }
 
-export default Home;
+export default Projects;

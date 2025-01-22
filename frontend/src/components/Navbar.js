@@ -57,22 +57,22 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link
-                                    to="/services"
+                                    to="/projects"
                                     className="nav-links"
                                     onClick={closeMobileMenu}
                                 >
-                                    My projects
+                                    Projects
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link
-                                    to="/products"
-                                    className="nav-links"
-                                    onClick={closeMobileMenu}
-                                >
-                                    Calendar
-                                </Link>
-                            </li>
+                            {/*<li className="nav-item">*/}
+                            {/*    <Link*/}
+                            {/*        to="/products"*/}
+                            {/*        className="nav-links"*/}
+                            {/*        onClick={closeMobileMenu}*/}
+                            {/*    >*/}
+                            {/*        Calendar*/}
+                            {/*    </Link>*/}
+                            {/*</li>*/}
                             <li className="nav-item">
                                 <Link
                                     // to="/sign-up"
@@ -90,7 +90,7 @@ function Navbar() {
                         {/* <form>
                             <input type='text' placeholder='Search...'></input>
                         </form> */}
-                        {button && <Button buttonStyle="btn--outline">{loggedIn ? 'ACCOUNT' : 'SIGN IN'}</Button>}
+                        {button && <Button buttonStyle="btn--outline" goTo="/login">{loggedIn ? 'ACCOUNT' : 'SIGN IN'}</Button>}
                     </div>
                 </div>
             </nav>

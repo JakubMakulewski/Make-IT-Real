@@ -1,0 +1,198 @@
+.logout_container {
+    /*display: flex;*/
+    /*flex-flow: column;*/
+
+    /* align-items: center; */
+    /* min-width: 100%; */
+    /* width: 90%; */
+    width: 75%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.account_container {
+    padding: 1rem;
+    justify-content: center;
+}
+
+.account_container2 {
+    padding: 1rem 0 1rem 0;
+    justify-content: center;
+    display: flex;
+}
+
+.profile_image {
+    width: 100px;
+    height: 100px;
+    border: 3px solid black;
+    border-radius: 50%;
+}
+
+.logout_button_center{
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.logout_button_center button {
+
+    padding: 5px 8px;
+    font-size: 1.2rem;
+    background-color: transparent;
+
+    border: 3px solid #1b1919;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 25%;
+
+    text-align: center;
+    text-decoration: none;
+    color: #ff0000;
+}
+
+.logout_button_center button:hover {
+    background: #1b1919;
+    color: #ff0000;
+    transition: all 0.3s ease-out;
+}
+
+
+.account_container h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.userData_wrapper {
+    margin-top: 0.5rem;
+    justify-content: center;
+}
+
+.userData_wrapper h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.userData_wrapper h3 {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+
+.userData_wrapper hr {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #a9a9a9;
+}
+
+.userData_wrapper p {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.card_items_account {
+}
+
+
+.cards__items_account {
+    /* margin-bottom: 24px; */
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 kolumny o równej szerokości */
+    gap: 20px;  /* Odstęp między blokami */
+    padding: 20px;  /* Padding wewnętrzny sekcji */
+
+}
+
+.cards__item__pic-wrap_acc {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    padding-top: 30%;
+    overflow: hidden;
+    margin: 1em 0;
+}
+
+.cards__item__pic-wrap_acc::after {
+    content: attr(data-category);
+    position: absolute;
+    bottom: 0;
+    margin-left: 10px;
+    padding: 6px 8px;
+    max-width: calc((100%) - 60px);
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #1f98f4;
+    box-sizing: border-box;
+}
+
+.cards__item__img_acc {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: all 0.2s linear;
+}
+
+.card__item__more_Acc {
+    display: block;
+    max-width: 1300px;
+    margin: 5rem auto;
+    box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);
+    /*filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.55));*/
+    border-radius: 10px;
+    padding: 20px 30px 30px;
+}
+
+
+.cards__wrapper_acc {
+    position: relative;
+    margin: 1em 0 2em;
+}
+
+.project_card_acc {
+    position: relative;
+    width: 100%;
+    /*padding-top: 67%;*/
+    /*overflow: hidden;*/
+
+    /*padding: 20px 30px 30px;*/
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .cards__items_account {
+        grid-template-columns: repeat(2, 1fr);  /* 2 kolumny na ekranach poniżej 1024px */
+    }
+
+
+}
+
+
+@media only screen and (max-width: 768px) {
+    .cards__items_account {
+        display: block;
+    }
+}
+
+/*.sign_up {*/
+/*    color: #242424;*/
+/*    font-weight: bold;*/
+/*    text-decoration: none;*/
+/*}*/

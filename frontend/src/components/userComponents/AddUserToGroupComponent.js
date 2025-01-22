@@ -4,7 +4,6 @@ import Redirect from "react-router-dom/es/Redirect";
 import {useParams} from "react-router-dom";
 import "./AddUserToGroupComponent.css";
 import "./../Cards.css";
-import Kanban from "../Kanban/Kanban";
 
 function AddUserToGroupComponent() {
     const userId = localStorage.getItem('userId');
@@ -212,7 +211,6 @@ function AddUserToGroupComponent() {
             )}
             {error && <p className="error__message">{error}</p>}
         </div>
-
     );
 }
 

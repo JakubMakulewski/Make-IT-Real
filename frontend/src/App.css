@@ -28,7 +28,7 @@
   .products {
     background-image: url('./images/img-1.jpg');
     background-position: center;
-    background-size: fill;
+    background-size: cover;
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
@@ -42,4 +42,18 @@
     color: #fff;
     font-size: 100px;
   }
+
+.index {
+  background-image: url('./images/img-home.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
   

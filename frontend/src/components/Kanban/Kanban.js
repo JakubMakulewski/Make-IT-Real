@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import TaskCard from "./TaskCard";
+import JoinProject from "../JoinProject";
 import "./Kanban.css";
 
 const Kanban = () => {
@@ -10,89 +11,45 @@ const Kanban = () => {
     ]);
 
     const [newTaskTitle, setNewTaskTitle] = useState("");
-    const [draggedTask, setDraggedTask] = useState(null);
 
-    useEffect(() => {
-        fetch("http://localhost:5051/tasks")
-            .then((response) => response.json())
-            .then((data) => setTasks(data))
-            .catch((error) => console.error("Błąd pobierania danych:", error));
-    }, []);
-
+    // Funkcja dodawania taska
     const handleAddTask = () => {
-        if (!newTaskTitle.trim()) return;
+        if (!newTaskTitle.trim()) return; // Ignoruj puste wartości
 
         const newTask = {
             id: tasks.length + 1,
             title: newTaskTitle,
-            status: "todo",
+            status: "todo", // Domyślnie dodajemy do kolumny "To Do"
         };
 
         setTasks([...tasks, newTask]);
-        setNewTaskTitle("");
-    };
-
-    const handleDragStart = (task) => {
-        setDraggedTask(task);
-    };
-
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
-
-    const handleDrop = (status) => {
-        if (draggedTask) {
-            setTasks((prevTasks) =>
-                prevTasks.map((task) =>
-                    task.id === draggedTask.id ? { ...task, status } : task
-                )
-            );
-            setDraggedTask(null);
-        }
+        setNewTaskTitle(""); // Wyczyszczenie pola input
     };
 
     return (
-        <div className="tasks_list_wrapper">
-            <div>
+        <div className="kanban-container">
+            <h1>Kanban Board</h1>
+
+            {/* Sekcja dodawania taska */}
+            <div className="add-task-section">
                 <input
                     type="text"
-                    placeholder="Dodaj nowe zadanie"
+                    placeholder="Enter task title"
                     value={newTaskTitle}
                     onChange={(e) => setNewTaskTitle(e.target.value)}
                 />
-                <button onClick={handleAddTask}>Dodaj zadanie</button>
+                <button onClick={handleAddTask}>Add Task</button>
             </div>
 
-            <div className="tasks_list_wrapper">
+            <div className="kanban-columns">
                 {["todo", "doing", "done"].map((status) => (
-                    <div
-                        key={status}
-                        className="tasks_list"
-                        onDragOver={handleDragOver}
-                        onDrop={() => handleDrop(status)}
-                    >
+                    <div key={status} className="kanban-column">
                         <h2>{status.toUpperCase()}</h2>
-                        <div>
+                        <div className="kanban-tasks">
                             {tasks
                                 .filter((task) => task.status === status)
                                 .map((task) => (
-                                    <div
-                                        key={task.id}
-                                        className="task-card"
-                                        draggable
-                                        onDragStart={() => handleDragStart(task)}
-                                    >
-                                        <h3>{task.title}</h3>
-                                        <div className="task-info">
-                                            <div className="icon-group-left">
-                                                <i className="fas fa-tag"></i>
-                                                <i className="fas fa-user"></i>
-                                            </div>
-                                            <div>
-                                                <i className="fas fa-clock"></i> 28-01
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <TaskCard key={task.id} task={task} />
                                 ))}
                         </div>
                     </div>
