@@ -4,6 +4,7 @@ import Redirect from "react-router-dom/es/Redirect";
 import {useParams} from "react-router-dom";
 import "./AddUserToGroupComponent.css";
 import "./../Cards.css";
+import Kanban from "../Kanban/Kanban";
 
 function AddUserToGroupComponent() {
     const userId = localStorage.getItem('userId');
@@ -16,6 +17,7 @@ function AddUserToGroupComponent() {
     const [project, setProject] = useState('');
     const [groups, setGroups] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [isInGroup, setIsInGroup] = useState(false);
 
     useEffect(async () => {
         if(!loaded) {
@@ -121,6 +123,7 @@ function AddUserToGroupComponent() {
             setSuccess('You were added to selected group!');
             console.log('Dodano użytkownika do grupy!:', response.data);
             await fetchGroups();
+            setIsInGroup(true);
         } catch (err) {
             console.log(e.target.key);
             setSuccess('');
@@ -199,6 +202,7 @@ function AddUserToGroupComponent() {
                                             className={isUserInGroup ? "red_button" : "black_button"}
                                             onClick={isUserInGroup ? handleRemoveUserFromGroup(group.id) : handleAddUserToGroup(group.id)}
                                         />
+                                        {isInGroup && <Kanban />}
 
                                     </li>
                                 </form>

@@ -1,20 +1,14 @@
 import React from "react";
 import "./TaskCard.css";
 
-const TaskCard = ({ task, column, onDragStart }) => {
+const TaskCard = ({ task, onDragStart }) => {
     return (
         <div
             className="task-card"
             draggable
-            onDragStart={(e) => onDragStart(e, task, column)}
+            onDragStart={() => onDragStart(task)} // Przekazanie taska do funkcji
         >
-            <div className="task-card-title">{task.title}</div>
-            <div className="task-card-details">
-                {task.details || "Brak dodatkowych informacji"}
-            </div>
-            <div className="task-card-footer">
-                <button>Edytuj</button>
-            </div>
+            <p>{task.title}</p>
         </div>
     );
 };

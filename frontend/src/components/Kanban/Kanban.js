@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TaskCard from "./TaskCard";
-import JoinProject from "../JoinProject";
 import "./Kanban.css";
 
 const Kanban = () => {
@@ -11,26 +10,43 @@ const Kanban = () => {
     ]);
 
     const [newTaskTitle, setNewTaskTitle] = useState("");
+    const [draggedTask, setDraggedTask] = useState(null);
 
-    // Funkcja dodawania taska
     const handleAddTask = () => {
-        if (!newTaskTitle.trim()) return; // Ignoruj puste wartości
+        if (!newTaskTitle.trim()) return;
 
         const newTask = {
             id: tasks.length + 1,
             title: newTaskTitle,
-            status: "todo", // Domyślnie dodajemy do kolumny "To Do"
+            status: "todo",
         };
 
         setTasks([...tasks, newTask]);
-        setNewTaskTitle(""); // Wyczyszczenie pola input
+        setNewTaskTitle("");
+    };
+
+    const handleDragStart = (task) => {
+        setDraggedTask(task); // Przechowujemy informację o zadaniu, które jest przeciągane
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault(); // Zapobiegamy domyślnemu zachowaniu
+    };
+
+    const handleDrop = (status) => {
+        if (!draggedTask) return; // Jeśli nie ma zadania przeciąganego, nie rób nic
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === draggedTask.id ? { ...task, status } : task
+            )
+        );
+        setDraggedTask(null); // Resetujemy stan przeciąganego zadania
     };
 
     return (
         <div className="kanban-container">
             <h1>Kanban Board</h1>
 
-            {/* Sekcja dodawania taska */}
             <div className="add-task-section">
                 <input
                     type="text"
@@ -43,13 +59,22 @@ const Kanban = () => {
 
             <div className="kanban-columns">
                 {["todo", "doing", "done"].map((status) => (
-                    <div key={status} className="kanban-column">
+                    <div
+                        key={status}
+                        className="kanban-column"
+                        onDragOver={handleDragOver}
+                        onDrop={() => handleDrop(status)}
+                    >
                         <h2>{status.toUpperCase()}</h2>
                         <div className="kanban-tasks">
                             {tasks
                                 .filter((task) => task.status === status)
                                 .map((task) => (
-                                    <TaskCard key={task.id} task={task} />
+                                    <TaskCard
+                                        key={task.id}
+                                        task={task}
+                                        onDragStart={() => handleDragStart(task)}
+                                    />
                                 ))}
                         </div>
                     </div>

@@ -14,6 +14,7 @@ function ProjectDetails() {
             {/* <Footer /> */}
             {/*<JoinProject />*/}
 
+
         </>
     );
 }

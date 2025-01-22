@@ -1,53 +1,67 @@
+/* Wrapper dla listy zadań */
+.tasks_list_wrapper {
+    width: 90%;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Kolumny w układzie siatki */
+    gap: 20px; /* Dodanie przerwy między kolumnami */
+}
+
+/* Lista zadań */
+.tasks_list {
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 5px 2px rgb(0 0 0 / 40%);
+    border-radius: 20px;
+}
+
+/* Karta zadania */
 .task-card {
-    background-color: #ffffff; /* Tło karty */
-    border: 1px solid #dcdcdc; /* Obwódka */
-    border-radius: 8px; /* Zaokrąglone rogi */
-    padding: 12px; /* Wewnętrzny odstęp */
-    margin-bottom: 12px; /* Odstęp między kartami */
-    cursor: grab; /* Wskaźnik myszy na uchwycenie */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Delikatny cień */
-    transition: box-shadow 0.3s ease, transform 0.2s ease; /* Płynne animacje */
+    margin: 2rem 0;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px 2px rgb(0 0 0 / 40%);
 }
 
-.task-card:active {
-    cursor: grabbing; /* Wskaźnik myszy podczas przeciągania */
-    transform: scale(1.05); /* Powiększenie podczas przeciągania */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Większy cień przy aktywności */
+/* Sekcja z informacjami o zadaniu */
+.task-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.task-card:hover {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Cień przy najechaniu myszą */
+/* Grupa ikon po lewej stronie */
+.icon-group-left {
+    display: flex;
 }
 
-.task-card-title {
-    font-size: 16px; /* Rozmiar czcionki tytułu */
-    font-weight: bold; /* Wyróżnienie tytułu */
-    margin-bottom: 8px; /* Odstęp pod tytułem */
-    color: #333; /* Kolor tekstu */
+.icon-group-left i {
+    margin-right: 1em;
 }
 
-.task-card-details {
-    font-size: 14px; /* Rozmiar czcionki szczegółów */
-    color: #666; /* Kolor tekstu szczegółów */
-    line-height: 1.5; /* Wysokość linii dla lepszej czytelności */
+.icon-group-left .icon-with-text i {
+    margin-right: 0.5em;
 }
 
-.task-card-footer {
-    margin-top: 12px; /* Odstęp u góry */
-    text-align: right; /* Wyrównanie do prawej */
+/* Responsywność dla ekranów poniżej 768px */
+@media only screen and (max-width: 768px) {
+    .tasks_list_wrapper {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr); /* Jeden wiersz z jedną kolumną */
+    }
+
+    .tasks_list {
+        margin: 1rem 0;
+    }
 }
 
-.task-card-footer button {
-    background-color: #007bff; /* Kolor przycisku */
-    color: #fff; /* Kolor tekstu */
-    border: none; /* Brak obramowania */
-    border-radius: 4px; /* Zaokrąglenie */
-    padding: 6px 12px; /* Wewnętrzne odstępy */
-    font-size: 14px; /* Rozmiar tekstu */
-    cursor: pointer; /* Wskaźnik myszy */
-    transition: background-color 0.3s ease; /* Animacja zmiany koloru */
-}
+/* Responsywność dla ekranów poniżej 1200px */
+@media only screen and (max-width: 1200px) {
+    .tasks_list_wrapper {
+        grid-template-columns: repeat(2, 1fr); /* Dwie kolumny na średnich ekranach */
+    }
 
-.task-card-footer button:hover {
-    background-color: #0056b3; /* Ciemniejszy niebieski po najechaniu */
+    .task-card {
+        width: 100%; /* Pełna szerokość kart */
+    }
 }
