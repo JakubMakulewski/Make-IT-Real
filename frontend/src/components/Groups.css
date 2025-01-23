@@ -1,0 +1,20 @@
+/* Groups.css */
+.groups-container {
+    margin: 20px;
+}
+
+.groups-list {
+    display: flex;
+    gap: 20px;
+}
+
+.group-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.kanban-access {
+    margin-top: 20px;
+}

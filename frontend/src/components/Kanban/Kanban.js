@@ -1,52 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import TaskCard from "./TaskCard";
 import "./Kanban.css";
 
-const Kanban = () => {
-    const [tasks, setTasks] = useState([
-        { id: 1, title: "Task 1", status: "todo" },
-        { id: 2, title: "Task 2", status: "doing" },
-        { id: 3, title: "Task 3", status: "done" },
-    ]);
-
+const Kanban = ({ projectId }) => {
+    const [tasks, setTasks] = useState([]);
     const [newTaskTitle, setNewTaskTitle] = useState("");
     const [draggedTask, setDraggedTask] = useState(null);
 
-    const handleAddTask = () => {
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5051/projects/${projectId}/tasks`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+                    },
+                });
+                setTasks(response.data);
+            } catch (error) {
+                console.error("Error fetching tasks:", error);
+            }
+        };
+
+        fetchTasks();
+    }, [projectId]);
+
+    const handleAddTask = async () => {
         if (!newTaskTitle.trim()) return;
 
         const newTask = {
-            id: tasks.length + 1,
             title: newTaskTitle,
-            status: "todo",
+            description: "Task description",
+            assignee: 1,
+            taskType: "todo",
+            projectId,
         };
 
-        setTasks([...tasks, newTask]);
-        setNewTaskTitle("");
+        try {
+            const response = await axios.post("http://localhost:5051/tasks", newTask, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+                },
+            });
+            setTasks((prevTasks) => [...prevTasks, response.data]);
+            setNewTaskTitle("");
+        } catch (error) {
+            console.error("Error adding task:", error);
+        }
     };
 
     const handleDragStart = (task) => {
-        setDraggedTask(task); // Przechowujemy informację o zadaniu, które jest przeciągane
+        setDraggedTask(task);
     };
 
-    const handleDragOver = (e) => {
-        e.preventDefault(); // Zapobiegamy domyślnemu zachowaniu
-    };
+    const handleDrop = async (newTaskType) => {
+        if (!draggedTask) return;
 
-    const handleDrop = (status) => {
-        if (!draggedTask) return; // Jeśli nie ma zadania przeciąganego, nie rób nic
-        setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-                task.id === draggedTask.id ? { ...task, status } : task
-            )
-        );
-        setDraggedTask(null); // Resetujemy stan przeciąganego zadania
+        const updatedTask = { ...draggedTask, taskType: newTaskType };
+
+        try {
+            await axios.put(`http://localhost:5051/tasks/${draggedTask.id}`, updatedTask, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+                },
+            });
+            setTasks((prevTasks) =>
+                prevTasks.map((task) =>
+                    task.id === draggedTask.id ? updatedTask : task
+                )
+            );
+            setDraggedTask(null);
+        } catch (error) {
+            console.error("Error updating task:", error);
+        }
     };
 
     return (
         <div className="kanban-container">
             <h1>Kanban Board</h1>
-
             <div className="add-task-section">
                 <input
                     type="text"
@@ -62,13 +93,13 @@ const Kanban = () => {
                     <div
                         key={status}
                         className="kanban-column"
-                        onDragOver={handleDragOver}
+                        onDragOver={(e) => e.preventDefault()}
                         onDrop={() => handleDrop(status)}
                     >
                         <h2>{status.toUpperCase()}</h2>
                         <div className="kanban-tasks">
                             {tasks
-                                .filter((task) => task.status === status)
+                                .filter((task) => task.taskType === status)
                                 .map((task) => (
                                     <TaskCard
                                         key={task.id}

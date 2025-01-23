@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import Redirect from "react-router-dom/es/Redirect";
-import {useParams} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom"; // Użycie hooka useHistory
 import "./AddUserToGroupComponent.css";
 import "./../Cards.css";
 import Kanban from "../Kanban/Kanban";
@@ -17,10 +16,11 @@ function AddUserToGroupComponent() {
     const [project, setProject] = useState('');
     const [groups, setGroups] = useState([]);
     const [loaded, setLoaded] = useState(false);
-    const [isInGroup, setIsInGroup] = useState(false);
+    const [isJoined, setIsJoined] = useState(false); // Nowy stan
+    const history = useHistory(); // Użycie hooka useHistory
 
     useEffect(async () => {
-        if(!loaded) {
+        if (!loaded) {
             await fetchUsersData();
             await fetchProjectById();
             await fetchGroups();
@@ -36,7 +36,7 @@ function AddUserToGroupComponent() {
         try {
             const response = await axios.get(`http://localhost:5051/users`, {
                 params: {
-                    pagepageSize: 1000,
+                    pageSize: 1000,
                 },
                 headers: {
                     Authorization: `Bearer ${token}`, // Dodanie tokena JWT do nagłówka
@@ -101,7 +101,7 @@ function AddUserToGroupComponent() {
         }
         console.log("GroupId: " + groupId);
         const group = groups.find(element => element.id === groupId);
-        if(group.users.indexOf(parseInt(userId)) === -1) {
+        if (group.users.indexOf(parseInt(userId)) === -1) {
             group.users.push(userId);
         }
         try {
@@ -123,7 +123,7 @@ function AddUserToGroupComponent() {
             setSuccess('You were added to selected group!');
             console.log('Dodano użytkownika do grupy!:', response.data);
             await fetchGroups();
-            setIsInGroup(true);
+            setIsJoined(true); // Ustawienie stanu na true po dołączeniu
         } catch (err) {
             console.log(e.target.key);
             setSuccess('');
@@ -159,6 +159,7 @@ function AddUserToGroupComponent() {
             setSuccess('You left the group!');
             console.log('Usunięto użytkownika z grupy!:', response.data);
             await fetchGroups();
+            setIsJoined(false); // Ustawienie stanu na false po opuszczeniu grupy
         } catch (err) {
             console.log(err);
             setSuccess('');
@@ -166,6 +167,10 @@ function AddUserToGroupComponent() {
         }
     };
 
+    // Funkcja obsługująca przejście do szczegółów grupy
+    const handleViewGroup = (groupId) => {
+        history.push(`/group/${groupId}`); // Przekierowanie na stronę szczegółów grupy
+    };
 
     return (
         <div className="account_container">
@@ -196,25 +201,37 @@ function AddUserToGroupComponent() {
                                                 </div>
                                             ))}
                                         </div>
-                                        <input
-                                            type="submit"
-                                            value={isUserInGroup ? "Leave?" : "Join!"}
-                                            className={isUserInGroup ? "red_button" : "black_button"}
-                                            onClick={isUserInGroup ? handleRemoveUserFromGroup(group.id) : handleAddUserToGroup(group.id)}
-                                        />
-                                        {isInGroup && <Kanban />}
-
+                                        <div className="button__wrapper">
+                                            <input
+                                                type="submit"
+                                                value={isUserInGroup ? "Leave?" : "Join!"}
+                                                className={isUserInGroup ? "red_button" : "black_button"}
+                                                onClick={isUserInGroup ? handleRemoveUserFromGroup(group.id) : handleAddUserToGroup(group.id)}
+                                            />
+                                            {/* Przycisk obok "Join!" */}
+                                            {isJoined && (
+                                                <button
+                                                    type="button"
+                                                    className="view_group_button"
+                                                    onClick={() => handleViewGroup(group.id)} // Funkcja do przekierowania
+                                                >
+                                                    Show Details
+                                                </button>
+                                            )}
+                                        </div>
                                     </li>
                                 </form>
                             );
                         })}
                     </ul>
                 </div>
+
             ) : (
                 <p className="no__groups">Brak grup do wyświetlenia.</p>
             )}
             {error && <p className="error__message">{error}</p>}
         </div>
+
     );
 }
 

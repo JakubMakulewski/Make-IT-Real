@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, useParams, Link} from 'react-router-dom';
 import './App.css';
 import Home from './components/pages/Home';
 import Services from './components/pages/Services';
@@ -17,8 +17,13 @@ import AddProject from "./components/AddProject";
 import JoinProject from "./components/JoinProject";
 import Kanban from "./components/Kanban/Kanban";
 import AddUserToGroupComponent from "./components/userComponents/AddUserToGroupComponent";
+import Groups from "./components/Groups";
+import ViewGroupPage from "./components/ViewGroupPage";
 
-
+const KanbanWrapper = () => {
+  const { projectId } = useParams();
+  return <Kanban projectId={projectId} />;
+};
 
 
 function App() {
@@ -44,6 +49,10 @@ function App() {
             <Route path="/join_project/:id" exact component={AddUserToGroupComponent} />
             <Route path="/join_project/:id" component={Kanban} />
           <Route path="/add-project" component={AddProject} />
+          <Route path="/kanbanpage/:id" component={Kanban} />
+          <Route path="/kanban/:projectId" element={<KanbanWrapper />} />
+          <Route path="/" exact component={AddUserToGroupComponent} />
+          <Route path="/group/:groupId" component={ViewGroupPage} />
         </Switch>
         <Footer/>
       </Router>
