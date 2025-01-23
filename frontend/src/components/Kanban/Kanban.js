@@ -49,6 +49,19 @@ const Kanban = ({ projectId }) => {
         }
     };
 
+    const handleDeleteTask = async (taskId) => {
+        try {
+            await axios.delete(`http://localhost:5051/tasks/${taskId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+                },
+            });
+            setTasks(tasks.filter((task) => task.id !== taskId));
+        } catch (error) {
+            console.error("Error deleting task:", error);
+        }
+    };
+
     const handleDragStart = (task) => {
         setDraggedTask(task);
     };
@@ -105,6 +118,7 @@ const Kanban = ({ projectId }) => {
                                         key={task.id}
                                         task={task}
                                         onDragStart={() => handleDragStart(task)}
+                                        onDelete={handleDeleteTask} // Upewnij się, że przekazujesz funkcję handleDeleteTask
                                     />
                                 ))}
                         </div>

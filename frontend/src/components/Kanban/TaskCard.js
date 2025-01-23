@@ -1,7 +1,7 @@
 import React from "react";
 import "./TaskCard.css";
 
-const TaskCard = ({ task, onDragStart }) => {
+const TaskCard = ({ task, onDragStart, onDelete }) => {
     return (
         <div
             className="task-card"
@@ -9,6 +9,7 @@ const TaskCard = ({ task, onDragStart }) => {
             onDragStart={() => onDragStart(task)} // Przekazanie taska do funkcji
         >
             <p>{task.title}</p>
+            <button onClick={() => onDelete(task.id)}>Delete</button>
         </div>
     );
 };
