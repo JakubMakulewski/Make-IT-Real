@@ -118,7 +118,7 @@ const Kanban = ({ projectId }) => {
                                         key={task.id}
                                         task={task}
                                         onDragStart={() => handleDragStart(task)}
-                                        onDelete={handleDeleteTask} // Upewnij się, że przekazujesz funkcję handleDeleteTask
+                                        onDelete={handleDeleteTask}
                                     />
                                 ))}
                         </div>

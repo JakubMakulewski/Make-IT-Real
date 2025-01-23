@@ -6,7 +6,7 @@ const TaskCard = ({ task, onDragStart, onDelete }) => {
         <div
             className="task-card"
             draggable
-            onDragStart={() => onDragStart(task)} // Przekazanie taska do funkcji
+            onDragStart={() => onDragStart(task)}
         >
             <p>{task.title}</p>
             <button onClick={() => onDelete(task.id)}>Delete</button>
