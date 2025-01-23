@@ -20,7 +20,7 @@
     border: 3px solid #1b1919;
     border-radius: 2px;
     cursor: pointer;
-    width: 25%;
+    width: fit-content;
 
     text-align: center;
     text-decoration: none;

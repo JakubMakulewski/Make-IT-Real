@@ -326,7 +326,7 @@ h1 {
     border: 3px solid #1b1919;
     border-radius: 2px;
     cursor: pointer;
-    width: 25%;
+    width: fit-content;
     /*height: 2em;*/
     text-align: center;
     text-decoration: none;
@@ -336,6 +336,11 @@ h1 {
     background: #1b1919;
     color: #fff;
     transition: all 0.3s ease-out;
+}
+
+.card__item__more__wrapper .join_project_btn {
+    padding: 15px 25px;
+    min-width: 30%;
 }
 
 .cards__item__buttons {

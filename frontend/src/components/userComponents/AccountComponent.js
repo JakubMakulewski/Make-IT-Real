@@ -124,7 +124,7 @@ const AccountComponent = () => {
                             <h3>Your account info:</h3>
                             <p>First name: {user.name}</p>
                             <p>Email: {user.email}</p>
-                            <hr/>
+                            {/*<hr/>*/}
                         </div>
                     }
                 </div>
@@ -142,7 +142,7 @@ const AccountComponent = () => {
                                     //   status="in progress"
                                              label={project.category}
                                     //   path="/project-details"
-                                             path={`/projects/${project.id}/tasks`}
+                                             path={`/project/${project.id}/tasks`}
                                 >
                                 </CardAccount>
 

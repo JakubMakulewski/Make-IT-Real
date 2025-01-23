@@ -1,7 +1,7 @@
-.account_container {
-    padding: 1rem;
-    justify-content: center;
-}
+/*.account_container {*/
+/*    padding: 1rem;*/
+/*    justify-content: center;*/
+/*}*/
 
 .project__header {
     text-align: center;
@@ -14,21 +14,21 @@
 }
 
 .cards__wrapper_acc {
-    position: relative;
-    margin: 2rem auto;
+    /*position: relative;*/
+    margin: 3rem auto;
     max-width: 1300px;
-    box-shadow: 0 3px 20px rgba(56, 125, 255, 0.55);
+    box-shadow: 0 2px 5px 2px rgb(0 0 0 / 40%);;
     border-radius: 10px;
     padding: 20px 30px 30px;
     background-color: #f5f5f5;
 }
 
-.cards__items_account {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Dostosowuje liczbę kolumn */
-    gap: 20px;
-    padding: 20px;
-}
+/*.cards__items_account {*/
+/*    !*display: grid;*!*/
+/*    !*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); !* Dostosowuje liczbę kolumn *!*!*/
+/*    !*gap: 20px;*!*/
+/*    padding: 20px;*/
+/*}*/
 
 .group_card {
     background: #fff;
@@ -37,12 +37,17 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 15px;
     text-align: center;
+
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
-.group_card:hover {
-    transform: translateY(-5px);
-    /*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);*/
-}
+/*.group_card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    !*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.55);*!*/
+/*}*/
 
 .group__name {
     font-size: 18px;
@@ -119,7 +124,7 @@ ul {
     font-size: 1.2rem;
     background-color: transparent;
     /*margin: 0 1em;*/
-    border: 3px solid #1b1919;
+    border: 3px solid #D04343;
     border-radius: 2px;
     cursor: pointer;
 
@@ -127,17 +132,17 @@ ul {
     /*height: 2em;*/
     text-align: center;
     text-decoration: none;
-    color: #ff0000;
+    color: #D04343;
 }
 
 .red_button:hover {
-    background: #1b1919;
-    color: #ff0000;
+    background: #D04343;
+    color: #fff;
     transition: all 0.3s ease-out;
 }
 .red_button:active {
     background: #fff;
-    color: #1b1919;
+    color: #D04343;
     transition: none;
 }
 
@@ -151,4 +156,43 @@ ul {
 .red_button.disabled_button:hover {
     background-color: #ccc; /* Brak efektu hover */
     color: #666;
+}
+
+.button__wrapper {
+    display: inline-grid;
+    width: 100%;
+}
+
+.button__wrapper > * {
+    margin: 0.5em 0;
+    width: 100%;
+}
+
+.button__wrapper .black_button {
+    /*margin: 1em;*/
+    padding: 8px 20px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    /*margin: 0 1em;*/
+    border: 3px solid #1b1919;
+    border-radius: 2px;
+    cursor: pointer;
+
+
+    /*height: 2em;*/
+    text-align: center;
+    text-decoration: none;
+    color: #1b1919;
+}
+
+.button__wrapper .black_button:hover {
+    background: #1b1919;
+    color: #fff;
+    transition: all 0.3s ease-out;
+}
+.button__wrapper .black_button:active {
+    background: #fff;
+    color: #1b1919;
+    transition: none;
+
 }

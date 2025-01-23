@@ -90,7 +90,7 @@ const Kanban = ({ projectId }) => {
 
     return (
         <div className="kanban-container">
-            <h1>Kanban Board</h1>
+            <h2>Kanban Board</h2>
             <div className="add-task-section">
                 <input
                     type="text"
@@ -109,7 +109,7 @@ const Kanban = ({ projectId }) => {
                         onDragOver={(e) => e.preventDefault()}
                         onDrop={() => handleDrop(status)}
                     >
-                        <h2>{status.toUpperCase()}</h2>
+                        <h3>{status.toUpperCase()}</h3>
                         <div className="kanban-tasks">
                             {tasks
                                 .filter((task) => task.taskType === status)

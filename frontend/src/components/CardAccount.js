@@ -21,6 +21,17 @@ function CardAccount(props) {
                         </figure>
                         <p className="cards__item__text__description">{props.description?.length > 250 ? `${props.description.substring(0, 250)}...` : props.description}</p>
                     </div>
+                    <div className="cards__item__buttons__parent">
+
+                        <div className="cards__item__buttons">
+
+                            <Link to={props.path}
+                                  className="join_project_btn"
+                            >
+                                {isPrivate ? <i className="fas fa-lock"></i> : "Details"}
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </li>
         </>

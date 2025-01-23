@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import Kanban from "./Kanban/Kanban";
+import './ViewGroupPage.css';
 
 const ViewGroupPage = () => {
     const { groupId } = useParams();
@@ -45,10 +46,10 @@ const ViewGroupPage = () => {
             {group ? (
                 <>
                     <h1>{group.name}</h1>
-                    <p>Project: {group.projectId}</p>
-                    <div className="kanban-container">
+                    <p className="project_number_p">Project: {group.projectId}</p>
+                    {/*<div className="kanban-container">*/}
                         <Kanban projectId={group.projectId} /> {/* Pass the projectId to Kanban */}
-                    </div>
+                    {/*</div>*/}
                 </>
             ) : (
                 <p>Loading...</p>

@@ -173,10 +173,11 @@ function AddUserToGroupComponent() {
     };
 
     return (
-        <div className="account_container">
+        <div className="account_container"><h1>Groups</h1>
             {groups.length > 0 ? (
+
                 <div className="cards__wrapper_acc">
-                    <h1>Your Groups</h1>
+
                     <ul className="cards__items_account">
                         {groups.map((group) => {
                             const isUserInGroup = group.users.includes(parseInt(userId));
@@ -204,7 +205,7 @@ function AddUserToGroupComponent() {
                                         <div className="button__wrapper">
                                             <input
                                                 type="submit"
-                                                value={isUserInGroup ? "Leave?" : "Join!"}
+                                                value={isUserInGroup ? "Leave" : "Join"}
                                                 className={isUserInGroup ? "red_button" : "black_button"}
                                                 onClick={isUserInGroup ? handleRemoveUserFromGroup(group.id) : handleAddUserToGroup(group.id)}
                                             />
@@ -212,7 +213,7 @@ function AddUserToGroupComponent() {
                                             {isJoined && (
                                                 <button
                                                     type="button"
-                                                    className="view_group_button"
+                                                    className="black_button"
                                                     onClick={() => handleViewGroup(group.id)} // Funkcja do przekierowania
                                                 >
                                                     Show Details
